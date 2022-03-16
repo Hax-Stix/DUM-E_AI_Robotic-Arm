@@ -1,4 +1,5 @@
 import speech_recognition as sr
+#FIXME: Possible Problem Here wit RPi.GPIO
 import RPi.GPIO as GPIO
 from datetime import date
 from time import sleep
@@ -7,12 +8,12 @@ from time import sleep
 GPIO.setmode(GPIO.BOARD)
 
 #GPIO Pins For CLAW
-#is meant to be 07 even if it looks like a mistake it refers to the pin number on the RASPBERRY PI
+#FIXME: is meant to be 07 even if it looks like a mistake it refers to the pin number on the RASPBERRY PI - Just Add '#' (Comment) to debug
 GPIO.setup(07, GPIO.OUT)
 GPIO.setup(11, GPIO.OUT)
 GPIO.setup(15, GPIO.OUT)
 #Claw DC Motor Output
-#is meant to be 07 even if it looks like a mistake it refers to the pin number on the RASPBERRY PI
+#FIXME: is meant to be 07 even if it looks like a mistake it refers to the pin number on the RASPBERRY PI - Just Add '#' (Comment) to debug
 Claw_DC_Motor_1 = (07)
 Claw_DC_Motor_2 = (11)
 #Claw PWM Control
@@ -95,7 +96,6 @@ def Claw_Open():
     GPIO.output(Claw_DC_Motor_2, False)
     GPIO.output(pwm_Claw, False)
     pwm_Claw.stop()
-
 #TODO:
 def Claw_Middle():
     if Claw_Pos == 0:
@@ -127,7 +127,6 @@ def Wrist_Up():
     GPIO.output(Claw_DC_Motor_2, False)
     GPIO.output(pwm_Wrist, False)
     pwm_Wrist.stop()
-
 #TODO:
 def Wrist_Middle():
     if Wrist_Pos == 0:
@@ -148,6 +147,7 @@ def Wrist_Down():
     GPIO.output(pwm_Wrist, False)
     pwm_Wrist.stop()
 
+
 def Elbow_Up():
     GPIO.output(Elbow_DC_Motor_1, True)
     GPIO.output(Elbow_DC_Motor_2, False)
@@ -158,7 +158,6 @@ def Elbow_Up():
     GPIO.output(Elbow_DC_Motor_2, False)
     GPIO.output(pwm_Elbow, False)
     pwm_Elbow.stop()
-
 #TODO:
 def Elbow_Middle():
     if Elbow_Pos == 0:
@@ -179,6 +178,7 @@ def Elbow_Down():
     GPIO.output(pwm_Elbow, False)
     pwm_Elbow.stop()
 
+
 def Shoulder_Vertical_Up():
     GPIO.output(Shoulder_Vertical_DC_Motor_1, True)
     GPIO.output(Shoulder_Vertical_DC_Motor_2, False)
@@ -189,7 +189,6 @@ def Shoulder_Vertical_Up():
     GPIO.output(Shoulder_Vertical_DC_Motor_2, False)
     GPIO.output(pwm_Shoulder_Vertical, False)
     pwm_Shoulder_Vertical.stop()
-
 #TODO:
 def Shoulder_Vertical_Middle():
     if Shoulder_Vertical_Pos == 0:
@@ -210,6 +209,7 @@ def Shoulder_Vertical_Down():
     GPIO.output(pwm_Shoulder_Vertical, False)
     pwm_Shoulder_Vertical.stop()
 
+
 def Shoulder_Horizontal_Left():
     GPIO.output(Shoulder_Horizontal_DC_Motor_1, True)
     GPIO.output(Shoulder_Horizontal_DC_Motor_2, False)
@@ -220,7 +220,6 @@ def Shoulder_Horizontal_Left():
     GPIO.output(Shoulder_Horizontal_DC_Motor_1, False)
     GPIO.output(pwm_Shoulder_Horizontal, False)
     pwm_Shoulder_Horizontal.stop()
-
 #TODO:
 def Shoulder_Horizontal_Middle():
     if Shoulder_Horizontal_Pos == 0:
@@ -229,7 +228,6 @@ def Shoulder_Horizontal_Middle():
         print("DUM-Es Shoulder_Horizontal Is Moving Towards Middle")
     elif Shoulder_Horizontal_Pos < 0:
         print("DUM-Es Shoulder_Horizontal Is Moving Towards Middle")
-
 
 def Shoulder_Horizontal_Right():
     GPIO.output(Shoulder_Horizontal_DC_Motor_1, False)
@@ -241,6 +239,7 @@ def Shoulder_Horizontal_Right():
     GPIO.output(Shoulder_Horizontal_DC_Motor_2, False)
     GPIO.output(pwm_Shoulder_Horizontal, False)
     pwm_Shoulder_Horizontal.stop()
+
 
 def LED_On():
     GPIO.output(Claw_LED, True)
@@ -348,10 +347,14 @@ while True:
         sleep(1)
         print("DUM-E Is Sad")
         Claw_Close()
+        sleep(1)
         Wrist_Middle()
+        sleep(1)
         Elbow_Middle()
+        sleep(1)
         Shoulder_Vertical_Middle()
+        sleep(1)
         Shoulder_Horizontal_Middle()
-        sleep(3)
+        sleep(5)
         print("DUM-E Says Bye Bye")
         break
