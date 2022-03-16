@@ -12,7 +12,7 @@ GPIO.setup(11, GPIO.OUT)
 GPIO.setup(15, GPIO.OUT)
 #Claw DC Motor Output
 Claw_DC_Motor_1 = (07)
-Claw_DC_Motor_2 = (11
+Claw_DC_Motor_2 = (11)
 #Claw PWM Control
 pwm_Claw=GPIO.PWM(15, 100)
 pwm_Claw.start(0)
