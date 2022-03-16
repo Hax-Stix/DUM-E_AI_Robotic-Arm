@@ -19,7 +19,7 @@ Claw_DC_Motor_2 = (11)
 pwm_Claw=GPIO.PWM(15, 100)
 pwm_Claw.start(0)
 #Claw Position
-Claw_Pos = int()
+Claw_Pos = int(0)
 
 #GPIO Pins For Wrist
 GPIO.setup(13, GPIO.OUT)
@@ -32,7 +32,7 @@ Wrist_DC_Motor_2 = (12)
 pwm_Wrist=GPIO.PWM(16, 100)
 pwm_Wrist.start(0)
 #Wrist Position
-Wrist_Pos = int()
+Wrist_Pos = int(0)
 
 #GPIO Pins For Elbow
 GPIO.setup(18, GPIO.OUT)
@@ -45,7 +45,7 @@ Elbow_DC_Motor_2 = (22)
 pwm_Elbow=GPIO.PWM(23, 100)
 pwm_Elbow.start(0)
 #Elbow Position
-Elbow_Pos = int()
+Elbow_Pos = int(0)
 
 #GPIO Pins For Shoulder Vertical
 GPIO.setup(24, GPIO.OUT)
@@ -58,7 +58,7 @@ Shoulder_Vertical_DC_Motor_2 = (26)
 pwm_Shoulder_Vertical=GPIO.PWM(19, 100)
 pwm_Shoulder_Vertical.start(0)
 #Shoulder Vertical Position
-Shoulder_Vertical_Pos = int()
+Shoulder_Vertical_Pos = int(0)
 
 #GPIO Pins for Shoulder Horizontal 
 GPIO.setup(21, GPIO.OUT)
@@ -71,7 +71,7 @@ Shoulder_Horizontal_DC_Motor_2 = (37)
 pwm_Shoulder_Horizontal=GPIO.PWM(40, 100)
 pwm_Shoulder_Horizontal.start(0)
 #Shoulder Horizontal Position
-Shoulder_Horizontal_Pos = int()
+Shoulder_Horizontal_Pos = int(0)
 
 
 #GPIO.setup
@@ -95,6 +95,14 @@ def Claw_Open():
     GPIO.output(Claw_DC_Motor_2, False)
     GPIO.output(pwm_Claw, False)
     pwm_Claw.stop()
+
+def Claw_Middle():
+    if Claw_Pos == 0:
+        print("DUM-Es Claw Is Already Located In The Middle")
+    elif Wrist_Pos > 0:
+        print("DUM-Es Claw Is Moving Towards Middle")
+    elif Wrist_Pos < 0:
+        print("DUM-Es Claw Is Moving Towards Middle")
 
 def Claw_Close():
     GPIO.output(Claw_DC_Motor_1, False)
@@ -120,7 +128,12 @@ def Wrist_Up():
     pwm_Wrist.stop()
 
 def Wrist_Middle():
-    GPIO.output()
+    if Wrist_Pos == 0:
+        print("DUM-Es Wrist Is Already Located In The Middle")
+    elif Wrist_Pos > 0:
+        print("DUM-Es Wrist Is Moving Towards Middle")
+    elif Wrist_Pos < 0:
+        print("DUM-Es Wrist Is Moving Towards Middle")
 
 def Wrist_Down():
     GPIO.output(Wrist_DC_Motor_1, False)
@@ -145,7 +158,12 @@ def Elbow_Up():
     pwm_Elbow.stop()
 
 def Elbow_Middle():
-    GPIO.output()
+    if Elbow_Pos == 0:
+        print("DUM-Es Elbow Is Already Located In The Middle")
+    elif Elbow_Pos > 0:
+        print("DUM-Es Elbow Is Moving Towards Middle")
+    elif Elbow_Pos < 0:
+        print("DUM-Es Elbow Is Moving Towards Middle")
 
 def Elbow_Down():
     GPIO.output(Elbow_DC_Motor_1, False)
@@ -170,7 +188,12 @@ def Shoulder_Vertical_Up():
     pwm_Shoulder_Vertical.stop()
 
 def Shoulder_Vertical_Middle():
-    GPIO.output()
+    if Shoulder_Vertical_Pos == 0:
+        print("DUM-Es Shoulder_Vertical Is Already Located In The Middle")
+    elif Shoulder_Vertical_Pos > 0:
+        print("DUM-Es Shoulder_Vertical Is Moving Towards Middle")
+    elif Shoulder_Vertical_Pos < 0:
+        print("DUM-Es Shoulder_Vertical Is Moving Towards Middle")
 
 def Shoulder_Vertical_Down():
     GPIO.output(Shoulder_Vertical_DC_Motor_1, False)
@@ -195,7 +218,12 @@ def Shoulder_Horizontal_Left():
     pwm_Shoulder_Horizontal.stop()
 
 def Shoulder_Horizontal_Middle():
-    GPIO.output()
+    if Shoulder_Horizontal_Pos == 0:
+        print("DUM-Es Shoulder_Horizontal Is Already Located In The Middle")
+    elif Shoulder_Horizontal_Pos > 0:
+        print("DUM-Es Shoulder_Horizontal Is Moving Towards Middle")
+    elif Shoulder_Horizontal_Pos < 0:
+        print("DUM-Es Shoulder_Horizontal Is Moving Towards Middle")
 
 
 def Shoulder_Horizontal_Right():
@@ -224,7 +252,7 @@ while True:
     print(words)
 
 
-    if words == "Claw Open":
+    if words == "Claw Open" and Claw_Pos == 0:
         print("DUM-Es Claw Opening")
         Claw_Open()
         print("DUM-E Finished Opening Claw")
