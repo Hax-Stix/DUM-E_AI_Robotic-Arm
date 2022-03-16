@@ -293,6 +293,11 @@ while True:
         print("...")
         sleep(1)
         print("DUM-E Is Sad")
+        Claw_Close()
+        Wrist_Middle()
+        Elbow_Middle()
+        Shoulder_Vertical_Middle()
+        Shoulder_Horizontal_Middle()
         sleep(3)
         print("DUM-E Say Bye Bye")
         break
