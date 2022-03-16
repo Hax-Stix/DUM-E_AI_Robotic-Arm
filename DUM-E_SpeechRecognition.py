@@ -238,50 +238,70 @@ while True:
         Wrist_Up()        
         print("DUM-E Finished Moving Wrist Up")
 
+    if words == "Wrist Middle":
+        print("DUM-Es Wrist Middle")
+        Wrist_Middle()
+        print("DUM-E Fished Moving Wrist To Middle")
+
     if words == "Wrist Down":
         print("DUM-Es Wrist Down")
         Wrist_Down()
-        print("DUM-Es Finished Moving Wrist Down")
+        print("DUM-E Finished Moving Wrist Down")
 
     if words == "Elbow Down":
         print("DUM-Es Elbow Down")
         Elbow_Down()
-        print("DUM-Es Finished Moving Elbow Down")
+        print("DUM-E Finished Moving Elbow Down")
+
+    if words == "Elbow Middle":
+        print("DUM-Es Elbow Middle")
+        Elbow_Middle()
+        print("DUM-E Finished Moving Elbow to Middle")
 
     if words == "Elbow Up":
         print("DUM-Es Elbow Up")
         Elbow_Down()
-        print("DUM-Es Finished Moving Elbow Up")
+        print("DUM-E Finished Moving Elbow Up")
 
     if words == "Shoulder Up":
         print("DUM-Es Shoulder Up")
         Shoulder_Vertical_Up()
-        print("DUM-Es Finished Moving Shoulder Up")
+        print("DUM-E Finished Moving Shoulder Up")
+
+    if words == "Shoulder Middle":
+        print("DUM-Es Shoulder Middle")
+        Shoulder_Vertical_Middle
+        print("DUM-E Finished Moving Shoulder to Middle")
 
     if words == "Shoulder Down":
         print("DUM-Es Shoulder Down")
         Shoulder_Vertical_Down()
-        print("DUM-Es Finished Moving Shoulder Down")
+        print("DUM-E Finished Moving Shoulder Down")
 
     if words == "Shoulder Left":
         print("DUM-Es Shoulder Left")
         Shoulder_Horizontal_Left()
-        print("DUM-Es Finished Moving Shoulder Left")
+        print("DUM-E Finished Moving Shoulder Left")
+
+    if words == "Rotate Middle":
+        print("DUM-Es Rotating To Middle")
+        Shoulder_Horizontal_Middle()
+        print("DUM-E Finished Rotating To Middle")
 
     if words == "Shoulder Right":
         print("DUM-Es Shoulder Right")
         Shoulder_Horizontal_Right()
-        print("DUM-Es Finished Moving Shoulder Right")
+        print("DUM-E Finished Moving Shoulder Right")
 
     if words == "Light On":
         print("DUM-Es Light On")
         LED_On()
-        print("DUM-Es Finished Turning Light On")
+        print("DUM-E Finished Turning Light On")
 
     if words == "Light Off":
         print("DUM-Es Light Off")
         LED_Off()
-        print("DUM-Es Finished Turning Light Off")
+        print("DUM-E Finished Turning Light Off")
 
 
 
@@ -299,5 +319,5 @@ while True:
         Shoulder_Vertical_Middle()
         Shoulder_Horizontal_Middle()
         sleep(3)
-        print("DUM-E Say Bye Bye")
+        print("DUM-E Says Bye Bye")
         break
