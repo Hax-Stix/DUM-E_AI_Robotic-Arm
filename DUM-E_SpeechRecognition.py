@@ -8,74 +8,74 @@ GPIO.setmode(GPIO.BOARD)
 
 #GPIO Pins For CLAW
 GPIO.setup(07, GPIO.OUT)
-GPIO.setup(17, GPIO.OUT)
-GPIO.setup(22, GPIO.OUT)
+GPIO.setup(11, GPIO.OUT)
+GPIO.setup(15, GPIO.OUT)
 #Claw DC Motor Output
-Claw_DC_Motor_1 = (4)
-Claw_DC_Motor_2 = (17)
+Claw_DC_Motor_1 = (07)
+Claw_DC_Motor_2 = (11
 #Claw PWM Control
-pwm_Claw=GPIO.PWM(22, 100)
+pwm_Claw=GPIO.PWM(15, 100)
 pwm_Claw.start(0)
 #Claw Position
 Claw_Pos = int()
 
 #GPIO Pins For Wrist
-GPIO.setup(27, GPIO.OUT)
-GPIO.setup(18, GPIO.OUT)
-GPIO.setup(23, GPIO.OUT)
+GPIO.setup(13, GPIO.OUT)
+GPIO.setup(12, GPIO.OUT)
+GPIO.setup(16, GPIO.OUT)
 #Wrist DC Motor Output
-Wrist_DC_Motor_1 = (27)
-Wrist_DC_Motor_2 = (18)
+Wrist_DC_Motor_1 = (13)
+Wrist_DC_Motor_2 = (12)
 #Wrist PWM Control
-pwm_Wrist=GPIO.PWM(23, 100)
+pwm_Wrist=GPIO.PWM(16, 100)
 pwm_Wrist.start(0)
 #Wrist Position
 Wrist_Pos = int()
 
 #GPIO Pins For Elbow
-GPIO.setup(24, GPIO.OUT)
-GPIO.setup(25, GPIO.OUT)
-GPIO.setup(11, GPIO.OUT)
+GPIO.setup(18, GPIO.OUT)
+GPIO.setup(22, GPIO.OUT)
+GPIO.setup(23, GPIO.OUT)
 #Elbow DC Motor Output
-Elbow_DC_Motor_1 = (24)
-Elbow_DC_Motor_2 = (25)
+Elbow_DC_Motor_1 = (18)
+Elbow_DC_Motor_2 = (22)
 #Elbow PWM Control
-pwm_Elbow=GPIO.PWM(11, 100)
+pwm_Elbow=GPIO.PWM(23, 100)
 pwm_Elbow.start(0)
 #Elbow Position
 Elbow_Pos = int()
 
 #GPIO Pins For Shoulder Vertical
-GPIO.setup(8, GPIO.OUT)
-GPIO.setup(7, GPIO.OUT)
-GPIO.setup(10, GPIO.OUT)
+GPIO.setup(24, GPIO.OUT)
+GPIO.setup(26, GPIO.OUT)
+GPIO.setup(19, GPIO.OUT)
 #Shoulder Vertical DC Motor Output
-Shoulder_Vertical_DC_Motor_1 = (8)
-Shoulder_Vertical_DC_Motor_2 = (7)
+Shoulder_Vertical_DC_Motor_1 = (24)
+Shoulder_Vertical_DC_Motor_2 = (26)
 #Shoulder Vertical PWM Control
-pwm_Shoulder_Vertical=GPIO.PWM(10, 100)
+pwm_Shoulder_Vertical=GPIO.PWM(19, 100)
 pwm_Shoulder_Vertical.start(0)
 #Shoulder Vertical Position
 Shoulder_Vertical_Pos = int()
 
 #GPIO Pins for Shoulder Horizontal 
-GPIO.setup(9, GPIO.OUT)
-GPIO.setup(26, GPIO.OUT)
 GPIO.setup(21, GPIO.OUT)
+GPIO.setup(37, GPIO.OUT)
+GPIO.setup(40, GPIO.OUT)
 #Shoulder Horizontal DC Motor Output
-Shoulder_Horizontal_DC_Motor_1 = (9)
-Shoulder_Horizontal_DC_Motor_2 = (26)
+Shoulder_Horizontal_DC_Motor_1 = (21)
+Shoulder_Horizontal_DC_Motor_2 = (37)
 #Shoulder Horizontal PWM Control
-pwm_Shoulder_Horizontal=GPIO.PWM(21, 100)
+pwm_Shoulder_Horizontal=GPIO.PWM(40, 100)
 pwm_Shoulder_Horizontal.start(0)
 #Shoulder Horizontal Position
 Shoulder_Horizontal_Pos = int()
 
 
 #GPIO.setup
-GPIO.setup(20, GPIO.OUT)
+GPIO.setup(38, GPIO.OUT)
 #Claw LED Output
-Claw_LED = (20)
+Claw_LED = (38)
 
 
 
