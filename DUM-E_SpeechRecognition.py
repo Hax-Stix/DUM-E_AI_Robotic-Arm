@@ -96,6 +96,7 @@ def Claw_Open():
     GPIO.output(pwm_Claw, False)
     pwm_Claw.stop()
 
+#TODO:
 def Claw_Middle():
     if Claw_Pos == 0:
         print("DUM-Es Claw Is Already Located In The Middle")
@@ -127,6 +128,7 @@ def Wrist_Up():
     GPIO.output(pwm_Wrist, False)
     pwm_Wrist.stop()
 
+#TODO:
 def Wrist_Middle():
     if Wrist_Pos == 0:
         print("DUM-Es Wrist Is Already Located In The Middle")
@@ -157,6 +159,7 @@ def Elbow_Up():
     GPIO.output(pwm_Elbow, False)
     pwm_Elbow.stop()
 
+#TODO:
 def Elbow_Middle():
     if Elbow_Pos == 0:
         print("DUM-Es Elbow Is Already Located In The Middle")
@@ -187,6 +190,7 @@ def Shoulder_Vertical_Up():
     GPIO.output(pwm_Shoulder_Vertical, False)
     pwm_Shoulder_Vertical.stop()
 
+#TODO:
 def Shoulder_Vertical_Middle():
     if Shoulder_Vertical_Pos == 0:
         print("DUM-Es Shoulder_Vertical Is Already Located In The Middle")
@@ -217,6 +221,7 @@ def Shoulder_Horizontal_Left():
     GPIO.output(pwm_Shoulder_Horizontal, False)
     pwm_Shoulder_Horizontal.stop()
 
+#TODO:
 def Shoulder_Horizontal_Middle():
     if Shoulder_Horizontal_Pos == 0:
         print("DUM-Es Shoulder_Horizontal Is Already Located In The Middle")
@@ -251,73 +256,72 @@ while True:
     words = r.recognize_google(audio)
     print(words)
 
-
+#TODO:
     if words == "Claw Open" and Claw_Pos == 0:
         print("DUM-Es Claw Opening")
         Claw_Open()
         print("DUM-E Finished Opening Claw")
-
-
+#TODO:
     if words == "Claw Close":
         print("DUM-Es Claw Closing")
         Claw_Close()        
         print("DUM-E Finished Closing Claw")
-
+#TODO:
     if words == "Wrist Up":
         print("DUM-Es Wrist Up")
         Wrist_Up()        
         print("DUM-E Finished Moving Wrist Up")
-
+#TODO:
     if words == "Wrist Middle":
         print("DUM-Es Wrist Middle")
         Wrist_Middle()
         print("DUM-E Fished Moving Wrist To Middle")
-
+#TODO:
     if words == "Wrist Down":
         print("DUM-Es Wrist Down")
         Wrist_Down()
         print("DUM-E Finished Moving Wrist Down")
-
+#TODO:
     if words == "Elbow Down":
         print("DUM-Es Elbow Down")
         Elbow_Down()
         print("DUM-E Finished Moving Elbow Down")
-
+#TODO:
     if words == "Elbow Middle":
         print("DUM-Es Elbow Middle")
         Elbow_Middle()
         print("DUM-E Finished Moving Elbow to Middle")
-
+#TODO:
     if words == "Elbow Up":
         print("DUM-Es Elbow Up")
         Elbow_Down()
         print("DUM-E Finished Moving Elbow Up")
-
+#TODO:
     if words == "Shoulder Up":
         print("DUM-Es Shoulder Up")
         Shoulder_Vertical_Up()
         print("DUM-E Finished Moving Shoulder Up")
-
+#TODO:
     if words == "Shoulder Middle":
         print("DUM-Es Shoulder Middle")
         Shoulder_Vertical_Middle
         print("DUM-E Finished Moving Shoulder to Middle")
-
+#TODO:
     if words == "Shoulder Down":
         print("DUM-Es Shoulder Down")
         Shoulder_Vertical_Down()
         print("DUM-E Finished Moving Shoulder Down")
-
+#TODO:
     if words == "Shoulder Left":
         print("DUM-Es Shoulder Left")
         Shoulder_Horizontal_Left()
         print("DUM-E Finished Moving Shoulder Left")
-
+#TODO:
     if words == "Rotate Middle":
         print("DUM-Es Rotating To Middle")
         Shoulder_Horizontal_Middle()
         print("DUM-E Finished Rotating To Middle")
-
+#TODO:
     if words == "Shoulder Right":
         print("DUM-Es Shoulder Right")
         Shoulder_Horizontal_Right()
@@ -334,7 +338,7 @@ while True:
         print("DUM-E Finished Turning Light Off")
 
 
-
+#TODO:
     if words == "exit":
         print("...")
         sleep(1)
