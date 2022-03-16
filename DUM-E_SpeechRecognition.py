@@ -168,6 +168,7 @@ def Shoulder_Vertical_Up():
     pwm_Shoulder_Vertical.stop()
 
 def Shoulder_Vertical_Middle():
+    GPIO.output()
 
 def Shoulder_Vertical_Down():
     GPIO.output(Shoulder_Vertical_DC_Motor_1, False)
