@@ -7,7 +7,7 @@ from time import sleep
 GPIO.setmode(GPIO.BOARD)
 
 #GPIO Pins For CLAW
-GPIO.setup(4, GPIO.OUT)
+GPIO.setup(07, GPIO.OUT)
 GPIO.setup(17, GPIO.OUT)
 GPIO.setup(22, GPIO.OUT)
 #Claw DC Motor Output
