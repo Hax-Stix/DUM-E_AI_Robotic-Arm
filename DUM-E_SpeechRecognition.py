@@ -85,34 +85,97 @@ Claw_LED = (38)
 r = sr.Recognizer()
 mic = sr.Microphone()
 
+#Command To Fully Open Claw
+def Claw_Fully_Open():
+    if Claw_Pos <= 19:
+        print("DUM-Es Claw Is Fully Opening")
+        GPIO.output(Claw_DC_Motor_1, True)
+        GPIO.output(Claw_DC_Motor_2, False)
+        pwm_Claw.ChangeDutyCycle(50)
+        GPIO.output(pwm_Claw, True)
+        sleep(abs(Claw_Pos-(10*1)))
+        GPIO.output(Claw_DC_Motor_1, False)
+        GPIO.output(Claw_DC_Motor_2, False)
+        GPIO.output(pwm_Claw, False)
+        pwm_Claw.stop()
+        print("DUM-E Finished Fully Opening Claw")
+        Claw_Pos = 20
+    else:
+        print("DUM-E Is Already Fully Opened")
 
+#Command To Open Claw
 def Claw_Open():
-    GPIO.output(Claw_DC_Motor_1, True)
-    GPIO.output(Claw_DC_Motor_2, False)
-    pwm_Claw.ChangeDutyCycle(50)
-    GPIO.output(pwm_Claw, True)
-    sleep(0.3)
-    GPIO.output(Claw_DC_Motor_1, False)
-    GPIO.output(Claw_DC_Motor_2, False)
-    GPIO.output(pwm_Claw, False)
-    pwm_Claw.stop()
-#TODO:
+    if Claw_Pos <= 19:
+        print("DUM-Es Claw Is Opening")
+        GPIO.output(Claw_DC_Motor_1, True)
+        GPIO.output(Claw_DC_Motor_2, False)
+        pwm_Claw.ChangeDutyCycle(50)
+        GPIO.output(pwm_Claw, True)
+        sleep(1)
+        GPIO.output(Claw_DC_Motor_1, False)
+        GPIO.output(Claw_DC_Motor_2, False)
+        GPIO.output(pwm_Claw, False)
+        pwm_Claw.stop()
+        print("DUM-E Finished Opening Claw")
+        Claw_Pos = Claw_Pos + 1
+    else:
+        print("DUM-E Cannot Open Claw Any Further")
+
+#Command To Move Claw To Middle Location
 def Claw_Middle():
     if Claw_Pos == 0:
         print("DUM-Es Claw Is Already Located In The Middle")
-    elif Wrist_Pos > 0:
-        print("DUM-Es Claw Is Moving Towards Middle")
-    elif Wrist_Pos < 0:
-        print("DUM-Es Claw Is Moving Towards Middle")
+    elif Claw_Pos > 0:
+        print("DUM-Es Claw Is Opening Towards Middle")
+        GPIO.output(Claw_DC_Motor_1, True)
+        GPIO.output(Claw_DC_Motor_2, False)
+        pwm_Claw.ChangeDutyCycle(50)
+        GPIO.output(pwm_Claw, True)
+        sleep(abs(Claw_Pos-(10*1)))
+        GPIO.output(Claw_DC_Motor_1, False)
+        GPIO.output(Claw_DC_Motor_2, False)
+        GPIO.output(pwm_Claw, False)
+        pwm_Claw.stop()
+        print("DUM-E Finished Opening Claw To Middle")
+        Claw_Pos = 0
+    elif Claw_Pos < 0:
+        print("DUM-Es Claw Is Closing Towards Middle")
+        GPIO.output(Claw_DC_Motor_1, False)
+        GPIO.output(Claw_DC_Motor_2, True)
+        pwm_Claw.ChangeDutyCycle(50)
+        GPIO.output(pwm_Claw, True)
+        sleep(abs(Claw_Pos-(10*1)))
+        GPIO.output(Claw_DC_Motor_1, False)
+        GPIO.output(Claw_DC_Motor_1, False)
+        GPIO.output(pwm_Claw, False)
+        pwm_Claw.stop()
+        print("DUM-E Finished Closing Claw To Middle")
+        Claw_Pos = 0
 
 def Claw_Close():
+    if Claw_Pos >= -19:
+        print("DUM-Es Claw Is Closing")
+        GPIO.output(Claw_DC_Motor_1, False)
+        GPIO.output(Claw_DC_Motor_2, True)
+        pwm_Claw.ChangeDutyCycle(50)
+        GPIO.output(pwm_Claw, True)
+        sleep(1)
+        GPIO.output(Claw_DC_Motor_1, False)
+        GPIO.output(Claw_DC_Motor_1, False)
+        GPIO.output(pwm_Claw, False)
+        pwm_Claw.stop()
+        print("DUM-E Finished Closing Claw")
+    else:
+        print("Claw Cannot Close Any Further")
+
+def Claw_Fully_Close():
     GPIO.output(Claw_DC_Motor_1, False)
     GPIO.output(Claw_DC_Motor_2, True)
     pwm_Claw.ChangeDutyCycle(50)
     GPIO.output(pwm_Claw, True)
-    sleep(0.3)
+    sleep(abs(Claw_Pos-(10*1)))
     GPIO.output(Claw_DC_Motor_1, False)
-    GPIO.output(Claw_DC_Motor_1, False)
+    GPIO.output(Claw_DC_Motor_2, False)
     GPIO.output(pwm_Claw, False)
     pwm_Claw.stop()
 
@@ -129,12 +192,35 @@ def Wrist_Up():
     pwm_Wrist.stop()
 #TODO:
 def Wrist_Middle():
+
     if Wrist_Pos == 0:
         print("DUM-Es Wrist Is Already Located In The Middle")
+
     elif Wrist_Pos > 0:
-        print("DUM-Es Wrist Is Moving Towards Middle")
+        print("DUM-Es Wrist Is Moving Upwards Towards Middle")
+        GPIO.output(Claw_DC_Motor_1, True)
+        GPIO.output(Claw_DC_Motor_2, False)
+        pwm_Claw.ChangeDutyCycle(50)
+        GPIO.output(pwm_Wrist, True)
+        sleep(abs(Claw_Pos))
+        GPIO.output(Claw_DC_Motor_1, False)
+        GPIO.output(Claw_DC_Motor_2, False)
+        GPIO.output(pwm_Wrist, False)
+        pwm_Wrist.stop()
+        print("DUM-E Finished Moving Wrist Up To Middle")
+        
     elif Wrist_Pos < 0:
-        print("DUM-Es Wrist Is Moving Towards Middle")
+        print("DUM-Es Wrist Is Moving Downwards Towards Middle")
+        GPIO.output(Wrist_DC_Motor_1, False)
+        GPIO.output(Wrist_DC_Motor_2, True)
+        pwm_Wrist.ChangeDutyCycle(50)
+        GPIO.output(pwm_Wrist, True)
+        sleep(abs(Claw_Pos))
+        GPIO.output(Wrist_DC_Motor_1, False)
+        GPIO.output(Wrist_DC_Motor_2, False)
+        GPIO.output(pwm_Wrist, False)
+        pwm_Wrist.stop()
+        print("DUM-E Finished Moving Wrist Down To Middle")
 
 def Wrist_Down():
     GPIO.output(Wrist_DC_Motor_1, False)
@@ -256,40 +342,30 @@ while True:
     print(words)
 
 #TODO:
-    if words == "Claw Open" and Claw_Pos == 0:
-        print("DUM-Es Claw Opening")
+    if words == "Claw Open":
         Claw_Open()
-        print("DUM-E Finished Opening Claw")
+#TODO:
+    if words == "Claw Middle":
+        Claw_Middle()
+        Claw_Pos = 0
 #TODO:
     if words == "Claw Close":
-        print("DUM-Es Claw Closing")
         Claw_Close()        
-        print("DUM-E Finished Closing Claw")
 #TODO:
     if words == "Wrist Up":
-        print("DUM-Es Wrist Up")
         Wrist_Up()        
-        print("DUM-E Finished Moving Wrist Up")
 #TODO:
     if words == "Wrist Middle":
-        print("DUM-Es Wrist Middle")
         Wrist_Middle()
-        print("DUM-E Fished Moving Wrist To Middle")
 #TODO:
     if words == "Wrist Down":
-        print("DUM-Es Wrist Down")
         Wrist_Down()
-        print("DUM-E Finished Moving Wrist Down")
 #TODO:
     if words == "Elbow Down":
-        print("DUM-Es Elbow Down")
         Elbow_Down()
-        print("DUM-E Finished Moving Elbow Down")
 #TODO:
     if words == "Elbow Middle":
-        print("DUM-Es Elbow Middle")
         Elbow_Middle()
-        print("DUM-E Finished Moving Elbow to Middle")
 #TODO:
     if words == "Elbow Up":
         print("DUM-Es Elbow Up")
