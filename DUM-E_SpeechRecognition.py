@@ -466,76 +466,75 @@ while True:
     words = r.recognize_google(audio)
     print(words)
 
-#TODO:
+
     if words == "Claw Open":
         Claw_Open()
-#TODO:
+
+    if words == "Claw Fully Open":
+        Claw_Fully_Open()
+
     if words == "Claw Middle":
         Claw_Middle()
-        Claw_Pos = 0
-#TODO:
+
+    if words == "Claw Fully Close":
+        Claw_Fully_Close()
+
     if words == "Claw Close":
         Claw_Close()        
-#TODO:
+
     if words == "Wrist Up":
         Wrist_Up()        
-#TODO:
+
+    if words == "Wrist Fully Up":
+        Wrist_Fully_Up()
+
     if words == "Wrist Middle":
         Wrist_Middle()
-#TODO:
+
+    if words == "Wrist Fully Down":
+        Wrist_Fully_Down()
+
     if words == "Wrist Down":
         Wrist_Down()
-#TODO:
+
     if words == "Elbow Down":
         Elbow_Down()
-#TODO:
+
+    if words == "Elbow Fully Down":
+        Elbow_Fully_Down()
+
     if words == "Elbow Middle":
         Elbow_Middle()
-#TODO:
+
+    if words == "Elbow Fully Up":
+        Elbow_Fully_Up()
+
     if words == "Elbow Up":
-        print("DUM-Es Elbow Up")
         Elbow_Down()
-        print("DUM-E Finished Moving Elbow Up")
-#TODO:
+
     if words == "Shoulder Up":
-        print("DUM-Es Shoulder Up")
         Shoulder_Vertical_Up()
-        print("DUM-E Finished Moving Shoulder Up")
-#TODO:
+
     if words == "Shoulder Middle":
-        print("DUM-Es Shoulder Middle")
         Shoulder_Vertical_Middle
-        print("DUM-E Finished Moving Shoulder to Middle")
-#TODO:
+
     if words == "Shoulder Down":
-        print("DUM-Es Shoulder Down")
         Shoulder_Vertical_Down()
-        print("DUM-E Finished Moving Shoulder Down")
-#TODO:
+
     if words == "Shoulder Left":
-        print("DUM-Es Shoulder Left")
         Shoulder_Horizontal_Left()
-        print("DUM-E Finished Moving Shoulder Left")
-#TODO:
+
     if words == "Rotate Middle":
-        print("DUM-Es Rotating To Middle")
         Shoulder_Horizontal_Middle()
-        print("DUM-E Finished Rotating To Middle")
-#TODO:
+
     if words == "Shoulder Right":
-        print("DUM-Es Shoulder Right")
         Shoulder_Horizontal_Right()
-        print("DUM-E Finished Moving Shoulder Right")
 
     if words == "Light On":
-        print("DUM-Es Light On")
         LED_On()
-        print("DUM-E Finished Turning Light On")
 
     if words == "Light Off":
-        print("DUM-Es Light Off")
         LED_Off()
-        print("DUM-E Finished Turning Light Off")
 
 
 #TODO:
