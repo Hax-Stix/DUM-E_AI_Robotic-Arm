@@ -212,7 +212,7 @@ def Wrist_Fully_Up():
         print("DUM-Es Wrist Is Moving Up")
         GPIO.output(Wrist_DC_Motor_1, True)
         GPIO.output(Wrist_DC_Motor_2, False)
-        pwm_Claw.ChangeDutyCycle(50)
+        pwm_Wrist.ChangeDutyCycle(50)
         GPIO.output(pwm_Wrist, True)
         sleep(abs(Wrist_Pos-(20*1)))
         GPIO.output(Wrist_DC_Motor_1, False)
@@ -224,95 +224,170 @@ def Wrist_Fully_Up():
     else:
         print("DUM-Es Wrist Is Already Fully Up")
 
-
-#TODO:
 def Wrist_Middle():
-    if Wrist_Pos == 0:
-        print("DUM-Es Wrist Is Already Located In The Middle")
-    elif Wrist_Pos > 0:
+    if Wrist_Pos > 0:
         print("DUM-Es Wrist Is Moving Upwards Towards Middle")
-        GPIO.output(Claw_DC_Motor_1, True)
-        GPIO.output(Claw_DC_Motor_2, False)
-        pwm_Claw.ChangeDutyCycle(50)
+        GPIO.output(Wrist_DC_Motor_1, True)
+        GPIO.output(Wrist_DC_Motor_2, False)
+        pwm_Wrist.ChangeDutyCycle(50)
         GPIO.output(pwm_Wrist, True)
-        sleep(abs(Claw_Pos))
-        GPIO.output(Claw_DC_Motor_1, False)
-        GPIO.output(Claw_DC_Motor_2, False)
+        sleep(abs(Wrist_Pos-(0*1)))
+        GPIO.output(Wrist_DC_Motor_1, False)
+        GPIO.output(Wrist_DC_Motor_2, False)
         GPIO.output(pwm_Wrist, False)
         pwm_Wrist.stop()
-        print("DUM-E Finished Moving Wrist Up To Middle")  
+        print("DUM-E Finished Moving Wrist Up To Middle")
+        Wrist_Pos = 0
     elif Wrist_Pos < 0:
         print("DUM-Es Wrist Is Moving Downwards Towards Middle")
         GPIO.output(Wrist_DC_Motor_1, False)
         GPIO.output(Wrist_DC_Motor_2, True)
         pwm_Wrist.ChangeDutyCycle(50)
         GPIO.output(pwm_Wrist, True)
-        sleep(abs(Claw_Pos))
+        sleep(abs(Wrist_Pos-(0*1)))
         GPIO.output(Wrist_DC_Motor_1, False)
         GPIO.output(Wrist_DC_Motor_2, False)
         GPIO.output(pwm_Wrist, False)
         pwm_Wrist.stop()
         print("DUM-E Finished Moving Wrist Down To Middle")
+        Wrist_Pos = 0
+    else:
+        print("DUM-Es Wrist Is Already Located In The Middle")
 
 def Wrist_Fully_Down():
-    if Wrist_Pos == 0:
-        print("DUM-Es Claw Is Already Located In The Middle")
-    elif Wrist_Pos <= 19:
-        print("DUM-Es Wrist Is Moving Up")
-        GPIO.output(Claw_DC_Motor_1, True)
-        GPIO.output(Claw_DC_Motor_2, False)
-        pwm_Claw.ChangeDutyCycle(50)
+    if Wrist_Pos >= -19:
+        print("DUM-Es Wrist Is Moving Fully Down")
+        GPIO.output(Wrist_DC_Motor_1, False)
+        GPIO.output(Wrist_DC_Motor_2, True)
+        pwm_Wrist.ChangeDutyCycle(50)
         GPIO.output(pwm_Wrist, True)
-        sleep(abs(Wrist_Pos-(10*1)))
-        GPIO.output(Claw_DC_Motor_1, False)
-        GPIO.output(Claw_DC_Motor_2, False)
+        sleep(abs(Wrist_Pos-(-20*1)))
+        GPIO.output(Wrist_DC_Motor_1, False)
+        GPIO.output(Wrist_DC_Motor_2, False)
         GPIO.output(pwm_Wrist, False)
         pwm_Wrist.stop()
-        print("DUM-E Finished Moving Wrist Up")
-        Wrist_Pos = Wrist_Pos + 1
+        print("DUM-E Finished Moving Fully Wrist Up")
+        Wrist_Pos = -20
+    else:
+        print("DUM-Es Claw Is Already Located In The Middle")
 
 
 def Wrist_Down():
-    GPIO.output(Wrist_DC_Motor_1, False)
-    GPIO.output(Wrist_DC_Motor_2, True)
-    pwm_Wrist.ChangeDutyCycle(50)
-    GPIO.output(pwm_Wrist, True)
-    sleep(0.3)
-    GPIO.output(Wrist_DC_Motor_1, False)
-    GPIO.output(Wrist_DC_Motor_2, False)
-    GPIO.output(pwm_Wrist, False)
-    pwm_Wrist.stop()
+    if Wrist_Pos >= -19:
+        print("DUM-Es Wrist is Moving Down")
+        GPIO.output(Wrist_DC_Motor_1, False)
+        GPIO.output(Wrist_DC_Motor_2, True)
+        pwm_Wrist.ChangeDutyCycle(50)
+        GPIO.output(pwm_Wrist, True)
+        sleep(1)
+        GPIO.output(Wrist_DC_Motor_1, False)
+        GPIO.output(Wrist_DC_Motor_2, False)
+        GPIO.output(pwm_Wrist, False)
+        pwm_Wrist.stop()
+        print("DUM-E Finished Moving Wrist Down")
+        Wrist_Pos = Wrist_Pos - 1
+    else:
+        print("DUM-Es Wrist Is Already Fully Down")
 
 
 def Elbow_Up():
-    GPIO.output(Elbow_DC_Motor_1, True)
-    GPIO.output(Elbow_DC_Motor_2, False)
-    pwm_Elbow.ChangeDutyCycle(50)
-    GPIO.output(pwm_Elbow, True)
-    sleep(0.3)
-    GPIO.output(Elbow_DC_Motor_1, False)
-    GPIO.output(Elbow_DC_Motor_2, False)
-    GPIO.output(pwm_Elbow, False)
-    pwm_Elbow.stop()
-#TODO:
+    if Elbow_Pos <= 19:
+        print("DUM-Es Elbow is moving Up")
+        GPIO.output(Elbow_DC_Motor_1, True)
+        GPIO.output(Elbow_DC_Motor_2, False)
+        pwm_Elbow.ChangeDutyCycle(50)
+        GPIO.output(pwm_Elbow, True)
+        sleep(1)
+        GPIO.output(Elbow_DC_Motor_1, False)
+        GPIO.output(Elbow_DC_Motor_2, False)
+        GPIO.output(pwm_Elbow, False)
+        pwm_Elbow.stop()
+        print("DUM-E Finished Moving Elbow up")
+        Elbow_Pos = Elbow_Pos + 1
+    else:
+        print("DUM-Es Elbow Is Fully Up")
+
+def Elbow_Fully_Up():
+    if Elbow_Pos <= 19:
+        print("DUM-Es Elbow Is Fully Moving Up")
+        GPIO.output(Elbow_DC_Motor_1, True)
+        GPIO.output(Elbow_DC_Motor_2, False)
+        pwm_Elbow.ChangeDutyCycle(50)
+        GPIO.output(pwm_Elbow, True)
+        sleep(abs(Elbow_Pos-(20*1)))
+        GPIO.output(Elbow_DC_Motor_1, False)
+        GPIO.output(Elbow_DC_Motor_2, False)
+        GPIO.output(pwm_Elbow, False)
+        pwm_Elbow.stop()
+        print("DUM-E Finished Moving Elbow Fully Up")
+        Elbow_Pos = 20
+    else:
+        print("DUM-Es Elbow Is Already Fully Up")
+
+
 def Elbow_Middle():
-    if Elbow_Pos == 0:
-        print("DUM-Es Elbow Is Already Located In The Middle")
-    elif Elbow_Pos > 0:
-        print("DUM-Es Elbow Is Moving Towards Middle")
+    if Elbow_Pos > 0:
+        print("DUM-Es Elbow Is Moving Upwards Towards Middle")
+        GPIO.output(Elbow_DC_Motor_1, True)
+        GPIO.output(Elbow_DC_Motor_2, False)
+        pwm_Elbow.ChangeDutyCycle(50)
+        GPIO.output(pwm_Elbow, True)
+        sleep(abs(Elbow_Pos-(0*1)))
+        GPIO.output(Elbow_DC_Motor_1, False)
+        GPIO.output(Elbow_DC_Motor_2, False)
+        GPIO.output(pwm_Elbow, False)
+        pwm_Elbow.stop()
+        print("DUM-E Finished Moving Elbow Up To Middle")
+        Elbow_Pos = 0
     elif Elbow_Pos < 0:
-        print("DUM-Es Elbow Is Moving Towards Middle")
+        print("DUM-Es Elbow Is Moving Downwards Towards Middle")
+        GPIO.output(Elbow_DC_Motor_1, False)
+        GPIO.output(Elbow_DC_Motor_2, True)
+        pwm_Elbow.ChangeDutyCycle(50)
+        GPIO.output(pwm_Elbow, True)
+        sleep(abs(Elbow_Pos-(0*1)))
+        GPIO.output(Elbow_DC_Motor_1, False)
+        GPIO.output(Elbow_DC_Motor_2, False)
+        GPIO.output(pwm_Elbow, False)
+        pwm_Elbow.stop()
+        print("DUM-E Finished Moving Elbow Down To Middle")
+        Elbow_Pos = 0
+    else:
+        print("DUM-Es Elbow Is Already Located In The Middle")
 
 def Elbow_Down():
-    GPIO.output(Elbow_DC_Motor_1, False)
-    GPIO.output(Elbow_DC_Motor_2, True)
-    pwm_Elbow.ChangeDutyCycle(50)
-    GPIO.output(pwm_Elbow, True)
-    sleep(0.3)
-    GPIO.output(Elbow_DC_Motor_1, False)
-    GPIO.output(Elbow_DC_Motor_2, False)
-    GPIO.output(pwm_Elbow, False)
-    pwm_Elbow.stop()
+    if Elbow_Pos >= -19:
+        print("DUM-Es Elbow Is Moving Down")
+        GPIO.output(Elbow_DC_Motor_1, False)
+        GPIO.output(Elbow_DC_Motor_2, True)
+        pwm_Elbow.ChangeDutyCycle(50)
+        GPIO.output(pwm_Elbow, True)
+        sleep(1)
+        GPIO.output(Elbow_DC_Motor_1, False)
+        GPIO.output(Elbow_DC_Motor_2, False)
+        GPIO.output(pwm_Elbow, False)
+        pwm_Elbow.stop()
+        print("DUM-E Finished Moving Elbow Down")
+        Elbow_Pos = Elbow_Pos - 1
+    else:
+        print("DUM-Es Elbow Is Fully Down")
+
+def Elbow_Fully_Down():
+    if Elbow_Pos >= -19:
+        print("DUM-Es Elbow Is Moving Fully Down")
+        GPIO.output(Elbow_DC_Motor_1, False)
+        GPIO.output(Elbow_DC_Motor_2, True)
+        pwm_Elbow.ChangeDutyCycle(50)
+        GPIO.output(pwm_Elbow, True)
+        sleep(abs(Elbow_Pos-(-20*1)))
+        GPIO.output(Elbow_DC_Motor_1, False)
+        GPIO.output(Elbow_DC_Motor_2, False)
+        GPIO.output(pwm_Elbow, False)
+        pwm_Elbow.stop()
+        print("DUM-E Finished Moving Elbow Fully Down")
+        Elbow_Pos = -20
+    else:
+        print("DUM-Es Elbow Is Fully Down")
 
 
 def Shoulder_Vertical_Up():
