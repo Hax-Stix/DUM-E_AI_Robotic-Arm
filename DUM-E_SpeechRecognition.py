@@ -523,9 +523,9 @@ def Shoulder_Horizontal_Fully_Right():
     else:
         print("DUM-E Shoulder_Horizontal Is Already Fully Right")
 
-
-def if Shoulder_Horizontal_Pos > 0:
-        print("DUM-Es Shoulder_Horizontal Is Moving Upwards Towards Middle")
+def Shoulder_Horizontal_Middle():
+    if Shoulder_Horizontal_Pos > 0:
+        print("DUM-Es Shoulder_Horizontal Is Moving Right Towards Middle")
         GPIO.output(Shoulder_Horizontal_DC_Motor_1, True)
         GPIO.output(Shoulder_Horizontal_DC_Motor_2, False)
         pwm_Shoulder_Horizontal.ChangeDutyCycle(50)
@@ -535,10 +535,10 @@ def if Shoulder_Horizontal_Pos > 0:
         GPIO.output(Shoulder_Horizontal_DC_Motor_2, False)
         GPIO.output(pwm_Shoulder_Horizontal, False)
         pwm_Shoulder_Horizontal.stop()
-        print("DUM-E Finished Moving Shoulder_Horizontal Up To Middle")
+        print("DUM-E Finished Moving Shoulder_Horizontal Right To Middle")
         Shoulder_Horizontal_Pos = 0
     elif Shoulder_Horizontal_Pos < 0:
-        print("DUM-Es Shoulder_Horizontal Is Moving Downwards Towards Middle")
+        print("DUM-Es Shoulder_Horizontal Is Moving Left Towards Middle")
         GPIO.output(Shoulder_Horizontal_DC_Motor_1, False)
         GPIO.output(Shoulder_Horizontal_DC_Motor_2, True)
         pwm_Shoulder_Horizontal.ChangeDutyCycle(50)
@@ -548,22 +548,45 @@ def if Shoulder_Horizontal_Pos > 0:
         GPIO.output(Shoulder_Horizontal_DC_Motor_2, False)
         GPIO.output(pwm_Shoulder_Horizontal, False)
         pwm_Shoulder_Horizontal.stop()
-        print("DUM-E Finished Moving Shoulder_Horizontal Down To Middle")
+        print("DUM-E Finished Moving Shoulder_Horizontal Left To Middle")
         Shoulder_Horizontal_Pos = 0
     else:
         print("DUM-Es Shoulder_Horizontal Is Already Located In The Middle")
 
-def Shoulder_Horizontal_Left():
-    GPIO.output(Shoulder_Horizontal_DC_Motor_1, False)
-    GPIO.output(Shoulder_Horizontal_DC_Motor_2, True)
-    pwm_Shoulder_Horizontal.ChangeDutyCycle(50)
-    GPIO.output(pwm_Shoulder_Horizontal, True)
-    sleep(0.3)
-    GPIO.output(Shoulder_Horizontal_DC_Motor_1, False)
-    GPIO.output(Shoulder_Horizontal_DC_Motor_2, False)
-    GPIO.output(pwm_Shoulder_Horizontal, False)
-    pwm_Shoulder_Horizontal.stop()
 
+def Shoulder_Horizontal_Fully_Left():
+    if Shoulder_Horizontal_Pos >= -29:
+        print("DUM-Es Shoulder_Horizontal_Left Is Moving Fully Left")
+        GPIO.output(Shoulder_Horizontal_DC_Motor_1, False)
+        GPIO.output(Shoulder_Horizontal_DC_Motor_2, True)
+        pwm_Shoulder_Horizontal.ChangeDutyCycle(50)
+        GPIO.output(pwm_Shoulder_Horizontal, True)
+        sleep(abs(Shoulder_Horizontal_Pos-(-30*1)))
+        GPIO.output(Shoulder_Horizontal_DC_Motor_1, False)
+        GPIO.output(Shoulder_Horizontal_DC_Motor_2, False)
+        GPIO.output(pwm_Shoulder_Horizontal, False)
+        pwm_Shoulder_Horizontal.stop()
+        print("DUM-E Finished Moving Fully Left")
+        Shoulder_Horizontal_Pos = -30
+    else:
+        print("DUM-Es Shoulder_Horizontal_Left is Already Fully Left")
+
+def Shoulder_Horizontal_Left():
+    if Shoulder_Horizontal_Pos >= -29:
+        print("DUM-Es Shoulder_Horizontal Is Moving Left")
+        GPIO.output(Shoulder_Horizontal_DC_Motor_1, False)
+        GPIO.output(Shoulder_Horizontal_DC_Motor_2, True)
+        pwm_Shoulder_Horizontal.ChangeDutyCycle(50)
+        GPIO.output(pwm_Shoulder_Horizontal, True)
+        sleep(1)
+        GPIO.output(Shoulder_Horizontal_DC_Motor_1, False)
+        GPIO.output(Shoulder_Horizontal_DC_Motor_2, False)
+        GPIO.output(pwm_Shoulder_Horizontal, False)
+        pwm_Shoulder_Horizontal.stop()
+        print("DUM-E Finished Shoulder_Horizontal Moving Left")
+        Shoulder_Horizontal_Pos = Shoulder_Horizontal_Pos - 1
+    else:
+        print("DUM-Es Shoulder Vertical is Fully Down")
 
 def LED_On():
     GPIO.output(Claw_LED, True)
@@ -650,7 +673,6 @@ while True:
         LED_Off()
 
 
-#TODO:
     if words == "exit":
         print("...")
         sleep(1)
