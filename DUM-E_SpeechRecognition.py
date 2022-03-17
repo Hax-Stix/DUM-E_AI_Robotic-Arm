@@ -131,7 +131,7 @@ def Claw_Middle():
         GPIO.output(Claw_DC_Motor_2, False)
         pwm_Claw.ChangeDutyCycle(50)
         GPIO.output(pwm_Claw, True)
-        sleep(abs(Claw_Pos-(10*1)))
+        sleep(abs(Claw_Pos-(0*1)))
         GPIO.output(Claw_DC_Motor_1, False)
         GPIO.output(Claw_DC_Motor_2, False)
         GPIO.output(pwm_Claw, False)
@@ -144,7 +144,7 @@ def Claw_Middle():
         GPIO.output(Claw_DC_Motor_2, True)
         pwm_Claw.ChangeDutyCycle(50)
         GPIO.output(pwm_Claw, True)
-        sleep(abs(Claw_Pos-(10*1)))
+        sleep(abs(Claw_Pos-(0*1)))
         GPIO.output(Claw_DC_Motor_1, False)
         GPIO.output(Claw_DC_Motor_1, False)
         GPIO.output(pwm_Claw, False)
@@ -178,7 +178,7 @@ def Claw_Fully_Close():
         GPIO.output(Claw_DC_Motor_2, True)
         pwm_Claw.ChangeDutyCycle(50)
         GPIO.output(pwm_Claw, True)
-        sleep(abs(Claw_Pos-(10*1)))
+        sleep(abs(Claw_Pos-(-10*1)))
         GPIO.output(Claw_DC_Motor_1, False)
         GPIO.output(Claw_DC_Motor_2, False)
         GPIO.output(pwm_Claw, False)
@@ -227,10 +227,8 @@ def Wrist_Fully_Up():
 
 #TODO:
 def Wrist_Middle():
-
     if Wrist_Pos == 0:
         print("DUM-Es Wrist Is Already Located In The Middle")
-
     elif Wrist_Pos > 0:
         print("DUM-Es Wrist Is Moving Upwards Towards Middle")
         GPIO.output(Claw_DC_Motor_1, True)
@@ -242,8 +240,7 @@ def Wrist_Middle():
         GPIO.output(Claw_DC_Motor_2, False)
         GPIO.output(pwm_Wrist, False)
         pwm_Wrist.stop()
-        print("DUM-E Finished Moving Wrist Up To Middle")
-        
+        print("DUM-E Finished Moving Wrist Up To Middle")  
     elif Wrist_Pos < 0:
         print("DUM-Es Wrist Is Moving Downwards Towards Middle")
         GPIO.output(Wrist_DC_Motor_1, False)
