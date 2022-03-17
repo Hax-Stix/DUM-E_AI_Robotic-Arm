@@ -87,7 +87,7 @@ mic = sr.Microphone()
 
 #Command To Fully Open Claw
 def Claw_Fully_Open():
-    if Claw_Pos <= 19:
+    if Claw_Pos <= 9:
         print("DUM-Es Claw Is Fully Opening")
         GPIO.output(Claw_DC_Motor_1, True)
         GPIO.output(Claw_DC_Motor_2, False)
@@ -99,13 +99,13 @@ def Claw_Fully_Open():
         GPIO.output(pwm_Claw, False)
         pwm_Claw.stop()
         print("DUM-E Finished Fully Opening Claw")
-        Claw_Pos = 20
+        Claw_Pos = 10
     else:
-        print("DUM-E Is Already Fully Opened")
+        print("DUM-Es Claw Is Already Fully Opened")
 
 #Command To Open Claw
 def Claw_Open():
-    if Claw_Pos <= 19:
+    if Claw_Pos <= 9:
         print("DUM-Es Claw Is Opening")
         GPIO.output(Claw_DC_Motor_1, True)
         GPIO.output(Claw_DC_Motor_2, False)
@@ -152,8 +152,9 @@ def Claw_Middle():
         print("DUM-E Finished Closing Claw To Middle")
         Claw_Pos = 0
 
+#Command To Close Claw
 def Claw_Close():
-    if Claw_Pos >= -19:
+    if Claw_Pos >= -9:
         print("DUM-Es Claw Is Closing")
         GPIO.output(Claw_DC_Motor_1, False)
         GPIO.output(Claw_DC_Motor_2, True)
@@ -165,31 +166,65 @@ def Claw_Close():
         GPIO.output(pwm_Claw, False)
         pwm_Claw.stop()
         print("DUM-E Finished Closing Claw")
+        Claw_Pos = Claw_Pos - 1
     else:
-        print("Claw Cannot Close Any Further")
+        print("DUM-E Cannot Close Claw Any Further")
 
+#Command to Fully Close Claw
 def Claw_Fully_Close():
-    GPIO.output(Claw_DC_Motor_1, False)
-    GPIO.output(Claw_DC_Motor_2, True)
-    pwm_Claw.ChangeDutyCycle(50)
-    GPIO.output(pwm_Claw, True)
-    sleep(abs(Claw_Pos-(10*1)))
-    GPIO.output(Claw_DC_Motor_1, False)
-    GPIO.output(Claw_DC_Motor_2, False)
-    GPIO.output(pwm_Claw, False)
-    pwm_Claw.stop()
+    if Claw_Pos >= -9:
+        print("DUM-Es Claw Is Fully Closing")
+        GPIO.output(Claw_DC_Motor_1, False)
+        GPIO.output(Claw_DC_Motor_2, True)
+        pwm_Claw.ChangeDutyCycle(50)
+        GPIO.output(pwm_Claw, True)
+        sleep(abs(Claw_Pos-(10*1)))
+        GPIO.output(Claw_DC_Motor_1, False)
+        GPIO.output(Claw_DC_Motor_2, False)
+        GPIO.output(pwm_Claw, False)
+        pwm_Claw.stop()
+        print("DUM-E Finished Fully Closing Claw")
+        Claw_Pos = -10
+    else:
+        print("DUM-Es Claw Is Already Fully Closed")
 
-
+#Command To Move Wrist Up
 def Wrist_Up():
-    GPIO.output(Claw_DC_Motor_1, True)
-    GPIO.output(Claw_DC_Motor_2, False)
-    pwm_Claw.ChangeDutyCycle(50)
-    GPIO.output(pwm_Wrist, True)
-    sleep(0.3)
-    GPIO.output(Claw_DC_Motor_1, False)
-    GPIO.output(Claw_DC_Motor_2, False)
-    GPIO.output(pwm_Wrist, False)
-    pwm_Wrist.stop()
+    if Wrist_Pos <= 19:
+        print("DUM-Es Wrist Is Moving Up")
+        GPIO.output(Wrist_DC_Motor_1, True)
+        GPIO.output(Wrist_DC_Motor_2, False)
+        pwm_Wrist.ChangeDutyCycle(50)
+        GPIO.output(pwm_Wrist, True)
+        sleep(1)
+        GPIO.output(Wrist_DC_Motor_1, False)
+        GPIO.output(Wrist_DC_Motor_2, False)
+        GPIO.output(pwm_Wrist, False)
+        pwm_Wrist.stop()
+        print("DUM-E Finished Moving Wrist Up")
+        Wrist_Pos = Wrist_Pos + 1
+    else:
+        print("DUM-Es Wrist Cannot Move Up Any Further")
+
+#Command To Move Wrist Fully Up
+def Wrist_Fully_Up():
+    if Wrist_Pos <= 19:
+        print("DUM-Es Wrist Is Moving Up")
+        GPIO.output(Wrist_DC_Motor_1, True)
+        GPIO.output(Wrist_DC_Motor_2, False)
+        pwm_Claw.ChangeDutyCycle(50)
+        GPIO.output(pwm_Wrist, True)
+        sleep(abs(Wrist_Pos-(20*1)))
+        GPIO.output(Wrist_DC_Motor_1, False)
+        GPIO.output(Wrist_DC_Motor_2, False)
+        GPIO.output(pwm_Wrist, False)
+        pwm_Wrist.stop()
+        print("DUM-E Finished Moving Wrist Up")
+        Wrist_Pos = 20
+    else:
+        print("DUM-Es Wrist Is Already Fully Up")
+
+
 #TODO:
 def Wrist_Middle():
 
@@ -221,6 +256,24 @@ def Wrist_Middle():
         GPIO.output(pwm_Wrist, False)
         pwm_Wrist.stop()
         print("DUM-E Finished Moving Wrist Down To Middle")
+
+def Wrist_Fully_Down():
+    if Wrist_Pos == 0:
+        print("DUM-Es Claw Is Already Located In The Middle")
+    elif Wrist_Pos <= 19:
+        print("DUM-Es Wrist Is Moving Up")
+        GPIO.output(Claw_DC_Motor_1, True)
+        GPIO.output(Claw_DC_Motor_2, False)
+        pwm_Claw.ChangeDutyCycle(50)
+        GPIO.output(pwm_Wrist, True)
+        sleep(abs(Wrist_Pos-(10*1)))
+        GPIO.output(Claw_DC_Motor_1, False)
+        GPIO.output(Claw_DC_Motor_2, False)
+        GPIO.output(pwm_Wrist, False)
+        pwm_Wrist.stop()
+        print("DUM-E Finished Moving Wrist Up")
+        Wrist_Pos = Wrist_Pos + 1
+
 
 def Wrist_Down():
     GPIO.output(Wrist_DC_Motor_1, False)
