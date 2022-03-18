@@ -67,9 +67,9 @@ GPIO.setup(38, GPIO.OUT)
 #Claw LED Output
 Claw_LED = (38)
 
-time = int(0)
-speed = int(0)
-motion = 0
+time = 0
+speed = 0
+motion = ""
 
 def Claw_Open():
     print("DUM-Es Claw Is Opening")
@@ -213,46 +213,46 @@ while True:
     speed = input("Enter Speed:")
     print("A. Claw Open\n""B. Claw Close\n""C. Wrist Up\n""D. Wrist Down\n""E. Elbow Up\n""F. Elbow Down\n""G. Shoulder Vertical Up\n""H. Shoulder Vertical Down\n""I. Shoulder Horizontal Left\n""J. Shoulder Horizontal Right\n""Exit")
     motion = input("Enter Motion:")
-    
+
     if motion == "A" or "a":
         Claw_Open()
-        motion = 0
+        motion = ""
 
     if motion == "B" or "b":
         Claw_Close()
-        motion = 0
+        motion = ""
 
     if motion == "C" or "c":
         Wrist_Up()
-        motion = 0
+        motion = ""
 
     if motion == "D" or "d":
         Wrist_Down()
-        motion = 0
+        motion = ""
 
     if motion == "E" or "e":
         Elbow_Up()
-        motion = 0
+        motion = ""
 
     if motion == "F" or "f":
         Elbow_Down()
-        motion = 0
+        motion = ""
 
     if motion == "G" or "g":
         Shoulder_Vertical_Up()
-        motion = 0
+        motion = ""
 
     if motion == "H" or "h":
         Shoulder_Vertical_Down()
-        motion = 0
+        motion = ""
 
     if motion == "I" or "i":
         Shoulder_Horizontal_Left()
-        motion = 0
+        motion = ""
 
     if motion == "J" or "j":
         Shoulder_Horizontal_Right()
-        motion = 0
+        motion = ""
 
     if motion == "Exit" or "exit"  or "Ex" or "ex":
         break
