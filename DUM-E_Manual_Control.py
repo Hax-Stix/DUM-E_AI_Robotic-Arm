@@ -5,12 +5,10 @@ from time import sleep
 GPIO.setmode(GPIO.BOARD)
 
 #GPIO Pins For CLAW
-#FIXME: is meant to be 07 even if it looks like a mistake it refers to the pin number on the RASPBERRY PI - Just Add '#' (Comment) when/for debug
 GPIO.setup(7, GPIO.OUT)
 GPIO.setup(11, GPIO.OUT)
 GPIO.setup(15, GPIO.OUT)
 #Claw DC Motor Output
-#FIXME: is meant to be 07 even if it looks like a mistake it refers to the pin number on the RASPBERRY PI - Just Add '#' (Comment) when/for debug
 Claw_DC_Motor_1 = (7)
 Claw_DC_Motor_2 = (11)
 #Claw PWM Control
