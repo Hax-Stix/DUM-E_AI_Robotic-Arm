@@ -75,13 +75,13 @@ motion = ""
 
 def Claw_Open():
     print("DUM-Es Claw Is Opening")
-    GPIO.output(Claw_DC_Motor_1, True)
-    GPIO.output(Claw_DC_Motor_2, False)
+    GPIO.output(int(Claw_DC_Motor_1), True)
+    GPIO.output(int(Claw_DC_Motor_2), False)
     pwm_Claw.ChangeDutyCycle(int(speed))
     GPIO.output((pwm_pin_Claw), True)
     sleep(int(time))
-    GPIO.output(Claw_DC_Motor_1, False)
-    GPIO.output(Claw_DC_Motor_2, False)
+    GPIO.output(int(Claw_DC_Motor_1), False)
+    GPIO.output(int(Claw_DC_Motor_2), False)
     GPIO.output((pwm_pin_Claw), False)
     pwm_Claw.stop()
     print("DUM-E Finished Opening Claw")
