@@ -213,48 +213,49 @@ def LED_Off():
 while True:
     time = input("Enter Time:")
     speed = input("Enter Speed:")
-    print("A. Claw Open\n""B. Claw Close\n""C. Wrist Up\n""D. Wrist Down\n""E. Elbow Up\n""F. Elbow Down\n""G. Shoulder Vertical Up\n""H. Shoulder Vertical Down\n""I. Shoulder Horizontal Left\n""J. Shoulder Horizontal Right\n""Exit")
-    motion = input("Enter Motion:")
+    print("1. Claw Open\n""2. Claw Close\n""3. Wrist Up\n""4. Wrist Down\n""5. Elbow Up\n""F6. Elbow Down\n""7. Shoulder Vertical Up\n""8. Shoulder Vertical Down\n""9. Shoulder Horizontal Left\n""10. Shoulder Horizontal Right\n""11. Exit")
+    motion = int(input("Enter Motion:"))
 
-    if motion == "A" or "a":
+    if motion == 1:
         Claw_Open()
-        motion = ""
+        motion = 0
 
-    elif motion == "B" or "b":
+    elif motion == 2:
         Claw_Close()
-        motion = ""
+        motion = 0
 
-    elif motion == "C" or "c":
+    elif motion == 3:
         Wrist_Up()
-        motion = ""
+        motion = 0
 
-    elif motion == "D" or "d":
+    elif motion == 4:
         Wrist_Down()
-        motion = ""
+        motion = 0
 
-    elif motion == "E" or "e":
+    elif motion == 5:
         Elbow_Up()
-        motion = ""
+        motion = 0
 
-    elif motion == "F" or "f":
+    elif motion == 6:
         Elbow_Down()
-        motion = ""
+        motion = 0
 
-    elif motion == "G" or "g":
+    elif motion == 7:
         Shoulder_Vertical_Up()
-        motion = ""
+        motion = 0
 
-    elif motion == "H" or "h":
+    elif motion == 8:
         Shoulder_Vertical_Down()
-        motion = ""
+        motion = 0
 
-    elif motion == "I" or "i":
+    elif motion == 9:
         Shoulder_Horizontal_Left()
-        motion = ""
+        motion = 0
 
-    elif motion == "J" or "j":
+    elif motion == 10:
         Shoulder_Horizontal_Right()
-        motion = ""
+        motion = 0
 
-    elif motion == "Exit" or "exit"  or "Ex" or "ex":
+    elif motion == 11:
+        motion = 0
         break
