@@ -213,7 +213,7 @@ def LED_Off():
 while True:
     time = input("Enter Time:")
     speed = input("Enter Speed:")
-    print("1. Claw Open\n""2. Claw Close\n""3. Wrist Up\n""4. Wrist Down\n""5. Elbow Up\n""F6. Elbow Down\n""7. Shoulder Vertical Up\n""8. Shoulder Vertical Down\n""9. Shoulder Horizontal Left\n""10. Shoulder Horizontal Right\n""11. Exit")
+    print("1. Claw Open\n""2. Claw Close\n""3. Wrist Up\n""4. Wrist Down\n""5. Elbow Up\n""F6. Elbow Down\n""7. Shoulder Vertical Up\n""8. Shoulder Vertical Down\n""9. Shoulder Horizontal Left\n""10. Shoulder Horizontal Right\n""11. LED On\n""12. LED Off\n""13. EXIT\n")
     motion = int(input("Enter Motion:"))
 
     if motion == 1:
@@ -255,7 +255,15 @@ while True:
     elif motion == 10:
         Shoulder_Horizontal_Right()
         motion = 0
-
+    
     elif motion == 11:
+        LED_On()
+        motion = 0
+    
+    elif motion == 12:
+        LED_Off()
+        motion = 0
+
+    elif motion == 13:
         motion = 0
         break
