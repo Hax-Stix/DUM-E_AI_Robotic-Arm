@@ -220,41 +220,41 @@ while True:
         Claw_Open()
         motion = ""
 
-    if motion == "B" or "b":
+    elif motion == "B" or "b":
         Claw_Close()
         motion = ""
 
-    if motion == "C" or "c":
+    elif motion == "C" or "c":
         Wrist_Up()
         motion = ""
 
-    if motion == "D" or "d":
+    elif motion == "D" or "d":
         Wrist_Down()
         motion = ""
 
-    if motion == "E" or "e":
+    elif motion == "E" or "e":
         Elbow_Up()
         motion = ""
 
-    if motion == "F" or "f":
+    elif motion == "F" or "f":
         Elbow_Down()
         motion = ""
 
-    if motion == "G" or "g":
+    elif motion == "G" or "g":
         Shoulder_Vertical_Up()
         motion = ""
 
-    if motion == "H" or "h":
+    elif motion == "H" or "h":
         Shoulder_Vertical_Down()
         motion = ""
 
-    if motion == "I" or "i":
+    elif motion == "I" or "i":
         Shoulder_Horizontal_Left()
         motion = ""
 
-    if motion == "J" or "j":
+    elif motion == "J" or "j":
         Shoulder_Horizontal_Right()
         motion = ""
 
-    if motion == "Exit" or "exit"  or "Ex" or "ex":
+    elif motion == "Exit" or "exit"  or "Ex" or "ex":
         break
