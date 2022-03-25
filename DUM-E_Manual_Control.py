@@ -204,9 +204,11 @@ def Shoulder_Horizontal_Left():
     print("DUM-E Finished Shoulder_Horizontal Moving Left")
 
 def LED_On():
+    print("LED On")
     GPIO.output(Claw_LED, True)
 
 def LED_Off():
+    print("LED Off")
     GPIO.output(Claw_LED, False)
 
 
