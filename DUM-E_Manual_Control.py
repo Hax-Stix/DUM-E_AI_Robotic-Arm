@@ -67,7 +67,7 @@ pwm_Shoulder_Horizontal.start(0)
 #GPIO.setup
 GPIO.setup(38, GPIO.OUT)
 #Claw LED Output
-Claw_LED = (38)
+Claw_LED = 38
 
 time = 0
 speed = 0
