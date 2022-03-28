@@ -1,5 +1,5 @@
-
 import RPi.GPIO as GPIO
+#INFO:RPi.GPIO Librarry Not Avaliable On Anyhting Other Than RPI Boards
 from time import sleep
 
 GPIO.setmode(GPIO.BOARD)
