@@ -84,6 +84,7 @@ def Claw_Open():
     GPIO.output(int(Claw_DC_Motor_1), False)
     GPIO.output(int(Claw_DC_Motor_2), False)
     GPIO.output((pwm_pin_Claw), False)
+    pwm_Claw.ChangeDutyCycle(0)
     pwm_Claw.stop()
     print("DUM-E Finished Opening Claw")
 
@@ -97,6 +98,7 @@ def Claw_Close():
     GPIO.output(Claw_DC_Motor_1, False)
     GPIO.output(Claw_DC_Motor_1, False)
     GPIO.output((pwm_pin_Claw), False)
+    pwm_Claw.ChangeDutyCycle(0)
     pwm_Claw.stop()
     print("DUM-E Finished Closing Claw")
 
@@ -110,6 +112,7 @@ def Wrist_Up():
     GPIO.output(Wrist_DC_Motor_1, False)
     GPIO.output(Wrist_DC_Motor_2, False)
     GPIO.output((pwm_pin_Wrist), False)
+    pwm_Wrist.ChangeDutyCycle(0)
     pwm_Wrist.stop()
     print("DUM-E Finished Moving Wrist Up")
 
@@ -123,6 +126,7 @@ def Wrist_Down():
     GPIO.output(Wrist_DC_Motor_1, False)
     GPIO.output(Wrist_DC_Motor_2, False)
     GPIO.output((pwm_pin_Wrist), False)
+    pwm_Wrist.ChangeDutyCycle(0)
     pwm_Wrist.stop()
     print("DUM-E Finished Moving Wrist Down")
 
@@ -136,6 +140,7 @@ def Elbow_Up():
     GPIO.output(Elbow_DC_Motor_1, False)
     GPIO.output(Elbow_DC_Motor_2, False)
     GPIO.output((pwm_pin_Elbow), False)
+    pwm_Elbow.ChangeDutyCycle(0)
     pwm_Elbow.stop()
     print("DUM-E Finished Moving Elbow up")
     
@@ -149,6 +154,7 @@ def Elbow_Down():
     GPIO.output(Elbow_DC_Motor_1, False)
     GPIO.output(Elbow_DC_Motor_2, False)
     GPIO.output((pwm_pin_Elbow), False)
+    pwm_Elbow.ChangeDutyCycle(0)
     pwm_Elbow.stop()
     print("DUM-E Finished Moving Elbow Down")
 
@@ -162,6 +168,7 @@ def Shoulder_Vertical_Down():
     GPIO.output(Shoulder_Vertical_DC_Motor_1, False)
     GPIO.output(Shoulder_Vertical_DC_Motor_2, False)
     GPIO.output((pwm_pin_Shoulder_Vertical), False)
+    pwm_Shoulder_Vertical.ChangeDutyCycle(0)
     pwm_Shoulder_Vertical.stop()
     print("DUM-E Finished Moving Shoulder_Vertical Down")
 
@@ -175,6 +182,7 @@ def Shoulder_Vertical_Up():
     GPIO.output(Shoulder_Vertical_DC_Motor_1, False)
     GPIO.output(Shoulder_Vertical_DC_Motor_2, False)
     GPIO.output((pwm_pin_Shoulder_Vertical), False)
+    pwm_Shoulder_Vertical.ChangeDutyCycle(0)
     pwm_Shoulder_Vertical.stop()
     print("DUM-E Finished Moving Up")
 
@@ -188,6 +196,7 @@ def Shoulder_Horizontal_Right():
     GPIO.output(Shoulder_Horizontal_DC_Motor_1, False)
     GPIO.output(Shoulder_Horizontal_DC_Motor_1, False)
     GPIO.output((pwm_pin_Shoulder_Horizontal), False)
+    pwm_Shoulder_Horizontal.ChangeDutyCycle(0)
     pwm_Shoulder_Horizontal.stop()
     print("DUM-E Finished Moving Shoulder_Horizontal Right")
 
@@ -201,6 +210,7 @@ def Shoulder_Horizontal_Left():
     GPIO.output(Shoulder_Horizontal_DC_Motor_1, False)
     GPIO.output(Shoulder_Horizontal_DC_Motor_2, False)
     GPIO.output((pwm_pin_Shoulder_Horizontal), False)
+    pwm_Shoulder_Horizontal.ChangeDutyCycle(0)
     pwm_Shoulder_Horizontal.stop()
     print("DUM-E Finished Shoulder_Horizontal Moving Left")
 
