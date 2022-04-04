@@ -3,6 +3,7 @@ import speech_recognition as sr
 import RPi.GPIO as GPIO
 #INFO:RPi.GPIO Library Not Avaliable On Anyhting Other Than RPI Boards
 from time import sleep
+import numpy as np
 
 
 GPIO.setmode(GPIO.BOARD)
