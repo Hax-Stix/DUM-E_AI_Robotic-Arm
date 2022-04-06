@@ -174,6 +174,8 @@ def Claw_Middle():
         pwm_Claw.stop()
         print("DUM-E Finished Opening Claw To Middle")
         Claw_Pos = 0
+        if Claw_Limit_Upper or Claw_Limit_Lower == True:
+            print("ERROR DUM-E Calibration NEEDED")
     elif Claw_Pos < 0:
         print("DUM-Es Claw Is Closing Towards Middle")
         GPIO.output(Claw_DC_Motor_1, False)
