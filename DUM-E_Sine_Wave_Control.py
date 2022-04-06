@@ -6,6 +6,8 @@ from time import sleep
 import numpy as np
 
 
+#Trig - Sine Wave Stuff
+
 GPIO.setmode(GPIO.BOARD)
 
 #GPIO Pins For CLAW
