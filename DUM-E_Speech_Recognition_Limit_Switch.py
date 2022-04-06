@@ -21,6 +21,11 @@ pwm_Claw=GPIO.PWM(15, 100)
 pwm_Claw.start(0)
 #Claw Position
 Claw_Pos = int(0)
+#Claw Limit Switches
+GPIO.setup(port_or_pin, GPIO.IN)
+GPIO.setup(port_or_pin, GPIO.IN)
+Claw_Limit_Upper = int(port_or_pin)
+Claw_Limit_Lower = int(port_or_pin)
 
 #GPIO Pins For Wrist
 GPIO.setup(13, GPIO.OUT)
@@ -34,6 +39,11 @@ pwm_Wrist=GPIO.PWM(16, 100)
 pwm_Wrist.start(0)
 #Wrist Position
 Wrist_Pos = int(0)
+#Wrist Limit Switches
+GPIO.setup(port_or_pin, GPIO.IN)
+GPIO.setup(port_or_pin, GPIO.IN)
+Wrist_Limit_Upper = int(port_or_pin)
+Wrist_Limit_Lower = int(port_or_pin)
 
 #GPIO Pins For Elbow
 GPIO.setup(18, GPIO.OUT)
@@ -47,6 +57,11 @@ pwm_Elbow=GPIO.PWM(23, 100)
 pwm_Elbow.start(0)
 #Elbow Position
 Elbow_Pos = int(0)
+#Elbow Limit Switches
+GPIO.setup(port_or_pin, GPIO.IN)
+GPIO.setup(port_or_pin, GPIO.IN)
+Elbow_Limit_Upper = int(port_or_pin)
+Elbow_Limit_Lower = int(port_or_pin)
 
 #GPIO Pins For Shoulder Vertical
 GPIO.setup(24, GPIO.OUT)
@@ -60,6 +75,11 @@ pwm_Shoulder_Vertical=GPIO.PWM(19, 100)
 pwm_Shoulder_Vertical.start(0)
 #Shoulder Vertical Position
 Shoulder_Vertical_Pos = int(0)
+#Shoulder Vertical Limit Switches
+GPIO.setup(port_or_pin, GPIO.IN)
+GPIO.setup(port_or_pin, GPIO.IN)
+Shoulder_Vertical_Limit_Upper = int(port_or_pin)
+Shoulder_Vertical_Limit_Lower = int(port_or_pin)
 
 #GPIO Pins for Shoulder Horizontal 
 GPIO.setup(21, GPIO.OUT)
@@ -73,6 +93,11 @@ pwm_Shoulder_Horizontal=GPIO.PWM(40, 100)
 pwm_Shoulder_Horizontal.start(0)
 #Shoulder Horizontal Position
 Shoulder_Horizontal_Pos = int(0)
+#Shoulder Horizontal Limit Switches
+GPIO.setup(port_or_pin, GPIO.IN)
+GPIO.setup(port_or_pin, GPIO.IN)
+Shoulder_Horizontal_Limit_Upper = int(port_or_pin)
+Shoulder_Horizontal_Limit_Lower = int(port_or_pin)
 
 
 #GPIO.setup
