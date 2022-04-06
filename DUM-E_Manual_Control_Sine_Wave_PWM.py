@@ -57,6 +57,8 @@ Shoulder_Vertical_DC_Motor_2 = (26)
 pwm_pin_Shoulder_Vertical = (19)
 pwm_Shoulder_Vertical=GPIO.PWM(pwm_pin_Shoulder_Vertical, 100)
 pwm_Shoulder_Vertical.start(0)
+#Shoulder Vertical Position
+Shoulder_Vertical_pos = int(0)
 
 #GPIO Pins for Shoulder Horizontal 
 GPIO.setup(21, GPIO.OUT)
@@ -69,6 +71,8 @@ Shoulder_Horizontal_DC_Motor_2 = (37)
 pwm_pin_Shoulder_Horizontal = (40)
 pwm_Shoulder_Horizontal=GPIO.PWM(pwm_pin_Shoulder_Horizontal, 100)
 pwm_Shoulder_Horizontal.start(0)
+#Shoulder Horizontal Position
+Shoulder_Horizontal_pos = int(0)
 
 
 #GPIO.setup
