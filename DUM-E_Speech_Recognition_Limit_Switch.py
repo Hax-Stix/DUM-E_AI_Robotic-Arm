@@ -678,6 +678,9 @@ while True:
     if words == "Elbow Up":
         Elbow_Down()
 
+    if words == "Shoulder Fully Up":
+        Shoulder_Vertical_Fully_Up()
+
     if words == "Shoulder Up":
         Shoulder_Vertical_Up()
 
@@ -687,6 +690,12 @@ while True:
     if words == "Shoulder Down":
         Shoulder_Vertical_Down()
 
+    if words == "Shoulder Fully Down":
+        Shoulder_Vertical_Fully_Down()
+
+    if words == "SHoulder Fully Left":
+        Shoulder_Horizontal_Fully_Left()
+
     if words == "Shoulder Left":
         Shoulder_Horizontal_Left()
 
@@ -695,6 +704,9 @@ while True:
 
     if words == "Shoulder Right":
         Shoulder_Horizontal_Right()
+
+    if words == "Shoulder Fully Right":
+        Shoulder_Horizontal_Fully_Right()
 
     if words == "Light On":
         LED_On()
