@@ -106,30 +106,33 @@ GPIO.setup(38, GPIO.OUT)
 Claw_LED = (38)
 
 
-
 r = sr.Recognizer()
 mic = sr.Microphone()
+
 
 #Command To Fully Open Claw
 def Claw_Fully_Open():
     if Claw_Pos <= 9:
-        while Claw_Limit_Upper == False:
-            print("DUM-Es Claw Is Fully Opening")
-            GPIO.output(Claw_DC_Motor_1, True)
-            GPIO.output(Claw_DC_Motor_2, False)
-            pwm_Claw.ChangeDutyCycle(50)
-            GPIO.output(pwm_Claw, True)
-            sleep(abs(Claw_Pos-(10*1)))
-            GPIO.output(Claw_DC_Motor_1, False)
-            GPIO.output(Claw_DC_Motor_2, False)
-            GPIO.output(pwm_Claw, False)
-            pwm_Claw.ChangeDutyCycle(0)
-            pwm_Claw.stop()
-            print("DUM-E Finished Fully Opening Claw")
-            Claw_Pos = 10
-        else:
-            print("Claw Upper Limit Reached")
-            Claw_Pos = 10
+        if GPIO.input(Claw_Limit_Upper) == GPIO.HIGH:
+            print("ERROR Claw Upper Limit Reached DUM-E Calibration Needed")
+        elif Claw_Limit_Upper == False:
+            while GPIO.input(Claw_Limit_Upper) == GPIO.LOW and Claw_Pos != abs(10):
+                print("DUM-Es Claw Is Fully Opening")
+                GPIO.output(Claw_DC_Motor_1, True)
+                GPIO.output(Claw_DC_Motor_2, False)
+                pwm_Claw.ChangeDutyCycle(50)
+                GPIO.output(pwm_Claw, True)
+                sleep(abs(Claw_Pos-(10*1)))
+                GPIO.output(Claw_DC_Motor_1, False)
+                GPIO.output(Claw_DC_Motor_2, False)
+                GPIO.output(pwm_Claw, False)
+                pwm_Claw.ChangeDutyCycle(0)
+                pwm_Claw.stop()
+                print("DUM-E Finished Fully Opening Claw")
+                Claw_Pos = 10
+            else:
+                if ((GPIO.input(Claw_Limit_Upper) == GPIO.LOW) and (Claw_Pos != abs(10))) or ((GPIO.input(Claw_Limit_Upper) == GPIO.HIGH) and (Claw_Pos == abs(10))):
+                    print("ERROR DUM-E Claw Calibration Needed")
     else:
         print("DUM-Es Claw Is Already Fully Opened")
 
@@ -160,6 +163,8 @@ def Claw_Open():
 def Claw_Middle():
     if Claw_Pos == 0:
         print("DUM-Es Claw Is Already Located In The Middle")
+        if Claw_Limit_Upper or Claw_Limit_Lower == True:
+            print("ERROR DUM-E Calibration NEEDED")
     elif Claw_Pos > 0:
         print("DUM-Es Claw Is Opening Towards Middle")
         GPIO.output(Claw_DC_Motor_1, True)
@@ -190,61 +195,75 @@ def Claw_Middle():
         pwm_Claw.stop()
         print("DUM-E Finished Closing Claw To Middle")
         Claw_Pos = 0
+        if Claw_Limit_Upper or Claw_Limit_Lower == True:
+            print("ERROR DUM-E Calibration NEEDED")
 
 #Command To Close Claw
 def Claw_Close():
     if Claw_Pos >= -9:
-        print("DUM-Es Claw Is Closing")
-        GPIO.output(Claw_DC_Motor_1, False)
-        GPIO.output(Claw_DC_Motor_2, True)
-        pwm_Claw.ChangeDutyCycle(50)
-        GPIO.output(pwm_Claw, True)
-        sleep(1)
-        GPIO.output(Claw_DC_Motor_1, False)
-        GPIO.output(Claw_DC_Motor_1, False)
-        GPIO.output(pwm_Claw, False)
-        pwm_Claw.ChangeDutyCycle(0)
-        pwm_Claw.stop()
-        print("DUM-E Finished Closing Claw")
-        Claw_Pos = Claw_Pos - 1
+        while Claw_Limit_Lower == False:
+            print("DUM-Es Claw Is Closing")
+            GPIO.output(Claw_DC_Motor_1, False)
+            GPIO.output(Claw_DC_Motor_2, True)
+            pwm_Claw.ChangeDutyCycle(50)
+            GPIO.output(pwm_Claw, True)
+            sleep(1)
+            GPIO.output(Claw_DC_Motor_1, False)
+            GPIO.output(Claw_DC_Motor_1, False)
+            GPIO.output(pwm_Claw, False)
+            pwm_Claw.ChangeDutyCycle(0)
+            pwm_Claw.stop()
+            print("DUM-E Finished Closing Claw")
+            Claw_Pos = Claw_Pos - 1
+        else:
+            print("ERROR Claw Lower Limit Reached DUM-E Calibration Needed")
+            Claw_Pos = -10
     else:
         print("DUM-E Cannot Close Claw Any Further")
 
 #Command to Fully Close Claw
 def Claw_Fully_Close():
     if Claw_Pos >= -9:
-        print("DUM-Es Claw Is Fully Closing")
-        GPIO.output(Claw_DC_Motor_1, False)
-        GPIO.output(Claw_DC_Motor_2, True)
-        pwm_Claw.ChangeDutyCycle(50)
-        GPIO.output(pwm_Claw, True)
-        sleep(abs(Claw_Pos-(-10*1)))
-        GPIO.output(Claw_DC_Motor_1, False)
-        GPIO.output(Claw_DC_Motor_2, False)
-        GPIO.output(pwm_Claw, False)
-        pwm_Claw.ChangeDutyCycle(0)
-        pwm_Claw.stop()
-        print("DUM-E Finished Fully Closing Claw")
-        Claw_Pos = -10
+        while Claw_Limit_Lower == False:
+            print("DUM-Es Claw Is Fully Closing")
+            GPIO.output(Claw_DC_Motor_1, False)
+            GPIO.output(Claw_DC_Motor_2, True)
+            pwm_Claw.ChangeDutyCycle(50)
+            GPIO.output(pwm_Claw, True)
+            sleep(abs(Claw_Pos-(-10*1)))
+            GPIO.output(Claw_DC_Motor_1, False)
+            GPIO.output(Claw_DC_Motor_2, False)
+            GPIO.output(pwm_Claw, False)
+            pwm_Claw.ChangeDutyCycle(0)
+            pwm_Claw.stop()
+            print("DUM-E Finished Fully Closing Claw")
+            Claw_Pos = -10
+        else:
+            print("ERROR Claw Lower Limit Reached DUM-E Calibration Needed")
+            Claw_Pos = -10
     else:
         print("DUM-Es Claw Is Already Fully Closed")
 
 #Command To Move Wrist Up
 def Wrist_Up():
     if Wrist_Pos <= 19:
-        print("DUM-Es Wrist Is Moving Up")
-        GPIO.output(Wrist_DC_Motor_1, True)
-        GPIO.output(Wrist_DC_Motor_2, False)
-        pwm_Wrist.ChangeDutyCycle(50)
-        GPIO.output(pwm_Wrist, True)
-        sleep(1)
-        GPIO.output(Wrist_DC_Motor_1, False)
-        GPIO.output(Wrist_DC_Motor_2, False)
-        GPIO.output(pwm_Wrist, False)
-        pwm_Wrist.ChangeDutyCycle(0)
-        pwm_Wrist.stop()
-        print("DUM-E Finished Moving Wrist Up")
-        Wrist_Pos = Wrist_Pos + 1
+        while Wrist_Limit_Upper == False:
+            print("DUM-Es Wrist Is Moving Up")
+            GPIO.output(Wrist_DC_Motor_1, True)
+            GPIO.output(Wrist_DC_Motor_2, False)
+            pwm_Wrist.ChangeDutyCycle(50)
+            GPIO.output(pwm_Wrist, True)
+            sleep(1)
+            GPIO.output(Wrist_DC_Motor_1, False)
+            GPIO.output(Wrist_DC_Motor_2, False)
+            GPIO.output(pwm_Wrist, False)
+            pwm_Wrist.ChangeDutyCycle(0)
+            pwm_Wrist.stop()
+            print("DUM-E Finished Moving Wrist Up")
+            Wrist_Pos = Wrist_Pos + 1
+        else:
+            print("ERROR Wrist Upper Limit Reached DUM-E Calibration Needed")
+            Wrist_Pos = 20
     else:
         print("DUM-Es Wrist Cannot Move Up Any Further")
 
