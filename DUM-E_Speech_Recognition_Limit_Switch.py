@@ -115,7 +115,7 @@ def Claw_Fully_Open():
     if Claw_Pos <= 9:
         if GPIO.input(Claw_Limit_Upper) == GPIO.HIGH:
             print("ERROR Claw Upper Limit Reached DUM-E Calibration Needed")
-        elif Claw_Limit_Upper == False:
+        elif GPIO.input(Claw_Limit_Upper) == GPIO.LOW:
             while GPIO.input(Claw_Limit_Upper) == GPIO.LOW and Claw_Pos != abs(10):
                 print("DUM-Es Claw Is Fully Opening")
                 GPIO.output(Claw_DC_Motor_1, True)
@@ -270,19 +270,26 @@ def Wrist_Up():
 #Command To Move Wrist Fully Up
 def Wrist_Fully_Up():
     if Wrist_Pos <= 19:
-        print("DUM-Es Wrist Is Moving Up")
-        GPIO.output(Wrist_DC_Motor_1, True)
-        GPIO.output(Wrist_DC_Motor_2, False)
-        pwm_Wrist.ChangeDutyCycle(50)
-        GPIO.output(pwm_Wrist, True)
-        sleep(abs(Wrist_Pos-(20*1)))
-        GPIO.output(Wrist_DC_Motor_1, False)
-        GPIO.output(Wrist_DC_Motor_2, False)
-        GPIO.output(pwm_Wrist, False)
-        pwm_Wrist.ChangeDutyCycle(0)
-        pwm_Wrist.stop()
-        print("DUM-E Finished Moving Wrist Up")
-        Wrist_Pos = 20
+        if GPIO.input(Wrist_Limit_Upper) == GPIO.HIGH:
+            print("ERROR Wrist Upper Limit Reached DUM-E Calibration Needed")
+        elif GPIO.input(Wrist_Limit_Upper) == GPIO.LOW:
+            while GPIO.input(Wrist_Limit_Upper) == GPIO.LOW and Wrist_Pos != abs(20):
+                print("DUM-Es Wrist Is Moving Up")
+                GPIO.output(Wrist_DC_Motor_1, True)
+                GPIO.output(Wrist_DC_Motor_2, False)
+                pwm_Wrist.ChangeDutyCycle(50)
+                GPIO.output(pwm_Wrist, True)
+                sleep(abs(Wrist_Pos-(20*1)))
+                GPIO.output(Wrist_DC_Motor_1, False)
+                GPIO.output(Wrist_DC_Motor_2, False)
+                GPIO.output(pwm_Wrist, False)
+                pwm_Wrist.ChangeDutyCycle(0)
+                pwm_Wrist.stop()
+                print("DUM-E Finished Moving Wrist Up")
+                Wrist_Pos = 20
+            else:
+                if ((GPIO.input(Wrist_Limit_Upper) == GPIO.LOW) and (Wrist_Pos != abs(20))) or ((GPIO.input(Wrist_Limit_Upper) == GPIO.HIGH) and (Wrist_Pos == abs(10))):
+                    print("ERROR DUM-E Wrist Calibration Needed")
     else:
         print("DUM-Es Wrist Is Already Fully Up")
 
@@ -317,22 +324,31 @@ def Wrist_Middle():
         Wrist_Pos = 0
     else:
         print("DUM-Es Wrist Is Already Located In The Middle")
+        if GPIO.input(Wrist_Limit_Lower) or GPIO.input(Wrist_Limit_Upper) == GPIO.HIGH:
+            print("ERROR DUM-E Calibration NEEDED")
 
 def Wrist_Fully_Down():
     if Wrist_Pos >= -19:
-        print("DUM-Es Wrist Is Moving Fully Down")
-        GPIO.output(Wrist_DC_Motor_1, False)
-        GPIO.output(Wrist_DC_Motor_2, True)
-        pwm_Wrist.ChangeDutyCycle(50)
-        GPIO.output(pwm_Wrist, True)
-        sleep(abs(Wrist_Pos-(-20*1)))
-        GPIO.output(Wrist_DC_Motor_1, False)
-        GPIO.output(Wrist_DC_Motor_2, False)
-        GPIO.output(pwm_Wrist, False)
-        pwm_Wrist.ChangeDutyCycle(0)
-        pwm_Wrist.stop()
-        print("DUM-E Finished Moving Fully Wrist Up")
-        Wrist_Pos = -20
+        if GPIO.input(Wrist_Limit_Lower) == GPIO.HIGH:
+            print("ERROR Wrist Lower Limit Reached DUM-E Calibration Needed")
+        elif GPIO.input(Wrist_Limit_Lower) == GPIO.LOW:
+            while GPIO.input(Wrist_Limit_Upper) == GPIO.LOW and Wrist_Pos != abs(-20):
+                print("DUM-Es Wrist Is Moving Fully Down")
+                GPIO.output(Wrist_DC_Motor_1, False)
+                GPIO.output(Wrist_DC_Motor_2, True)
+                pwm_Wrist.ChangeDutyCycle(50)
+                GPIO.output(pwm_Wrist, True)
+                sleep(abs(Wrist_Pos-(-20*1)))
+                GPIO.output(Wrist_DC_Motor_1, False)
+                GPIO.output(Wrist_DC_Motor_2, False)
+                GPIO.output(pwm_Wrist, False)
+                pwm_Wrist.ChangeDutyCycle(0)
+                pwm_Wrist.stop()
+                print("DUM-E Finished Moving Fully Wrist Up")
+                Wrist_Pos = -20
+            else:
+                if ((GPIO.input(Wrist_Limit_Lower) == GPIO.LOW) and (Wrist_Pos == abs(-20))) or ((GPIO.input(Wrist_Limit_Lower) == GPIO.HIGH) and (Wrist_Pos != abs(-20))):
+                    print("ERROR DUM-E Wrist Calibration Needed")
     else:
         print("DUM-Es Claw Is Already Located In The Middle")
 
