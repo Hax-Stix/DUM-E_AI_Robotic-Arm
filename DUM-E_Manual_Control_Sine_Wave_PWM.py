@@ -48,11 +48,11 @@ Elbow_pos = int(0)
 
 #GPIO Pins For Shoulder Vertical
 GPIO.setup(24, GPIO.OUT)
-GPIO.setup(26, GPIO.OUT)
+GPIO.setup(36, GPIO.OUT)
 GPIO.setup(19, GPIO.OUT)
 #Shoulder Vertical DC Motor Output
 Shoulder_Vertical_DC_Motor_1 = (24)
-Shoulder_Vertical_DC_Motor_2 = (26)
+Shoulder_Vertical_DC_Motor_2 = (36)
 #Shoulder Vertical PWM Control
 pwm_pin_Shoulder_Vertical = (19)
 pwm_Shoulder_Vertical=GPIO.PWM(pwm_pin_Shoulder_Vertical, 100)
