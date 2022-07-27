@@ -1,4 +1,5 @@
-\documentclass[12pt]{article}
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
 \usepackage{pythonhighlight}
 \usepackage{graphicx}
 \title{My Karpled Sduff for ze ropodica armz brochect}
@@ -11,29 +12,34 @@
 
 \subsection{The Torques Applied onto the Wrist Joint}
 \pyth{Tr_W = (M_W * 9.81) * L_W}
+\\
+!!Need To Redo/Update!!
 
 \subsection{The Torques Applied onto the Elbow Joint}
 \pyth{Tr_E = ((M_W * 9.81) * (math.sqrt(L_W^2 + L_E^2 -(((2) * (L_W) * (L_E)) * (math.cos(A_W)))))) + ((M_E * 9.81) * L_E)}
+\\
+!!Need To Redo/Update!!
 
 \subsection{The Torques Applied onto the Shoulder Joint}
 \pyth{Tr_S = (M_W * 9.81) * (math.sqrt((math.sqrt(L_W^2 + L_E^2 -(((2) * (L_W) * (L_E)) * (math.cos(A_W)))))^2 + L_S^2 -(((2) * ((math.sqrt(L_W^2 + L_E^2 -(((2) * (L_W) * (L_E)) * (math.cos(A_W)))))) * (L_S)) * (math.cos((A_E - (math.acos(((math.sqrt(L_W^2 + L_E^2 -(((2) * (L_W) * (L_E)) * (math.cos(A_W)))))^2 + L_E^2 - L_W^2)/((2)((math.sqrt(L_W^2 + L_E^2 -(((2) * (L_W) * (L_E)) * (math.cos(A_W))))))(L_E)))))))))) + ((M_E * 9.81) * (math.sqrt(L_E^2 + L_S^2 -(((2) * (L_E) * (L_S)) * (math.cos(A_E)))))) + ((M_S * 9.81) * L_S)}
+\\
+!!Need To Redo/Update!!
 
 \section{Formulae}
 
 \subsection{The Torques Applied onto the Wrist Joint}
 \begin{equation}
-Tr_W = (9.81 \times M_W) \times L_W
+Tr_W = (9.81 \times M_W) \times (\frac{L_W}{2})
 \end{equation}
-
 
 \subsection{The Torques Applied onto the Elbow Joint}
 \begin{equation}
-Tr_E = ((9.81 \times M_W) \times \sqrt{{L_W}^2 + {L_E}^2-(2\times{L_W}\times{L_E} \times \cos({A_W}))})+ (9.81\times {M_E}\times{L_E})
+Tr_E = ((9.81 \times M_W) \times (\frac{((\sqrt{{L_W}^2 + {L_E}^2-(2\times{L_W}\times{L_E} \times \cos({A_W}))}) - {L_E})}{2}+L_E)+ ((9.81\times {M_E})\times(\frac{L_E}{2})
 \end{equation}
 
 \subsection{The Torques Applied onto the Shoulder Joint}
 \begin{equation}
-Tr_S = ((9.81 \times {M_W}) \times {R_{WS}}) + ((9.81 \times M_E)\times R_{WE})+((9.81 \times M_S)\times R_S)
+Tr_S = ((9.81 \times {M_W}) \times ((\frac{R_{WS} - R_{ES}}{2})+ R_{ES})) + ((9.81 \times M_E)\times ((\frac{R_{ES} - L_S}{2}) + R_{WE}))+((9.81 \times M_S)\times (\frac{L_S}{2}))
 \end{equation}
 
 \begin{equation}
@@ -45,15 +51,16 @@ R_{WE}=\sqrt{{L_W}^2+{L_E}^2-(2 \times {L_W} \times {L_E} \times \cos({A_W}))}
 \end{equation}
 
 \begin{equation}
-A_{E 1}=\arccos(\frac{{R_{WE}}^2+{L_E}^2-{L_W}^2}{{2}\times{R_{WE}}\times{L_E}})
+R_{ES} = \sqrt{L_S^2 + L_E^2 -(2 \times {L_S} \times {L_E} \times \cos({A_E}))}
+\end{equation}
+
+\begin{equation}
+A_{E 1} = \cos^{-1} (\frac{{R_{WE}}^2+{L_E}^2-{L_W}^2}{{2}\times{R_{WE}}\times{L_E}})
 \end{equation}
 
 \begin{equation}
 A_{E 2} = {A_E} - {A_{E 1}}
 \end{equation}
-
-\subsection{zo zad}
-yez Im zorry, no I didn't chust vrite this, I Hacdually coted/brogrammed it in LaTeX
 
 \section{Inverse Kinematics for Robotic Arm}
 
